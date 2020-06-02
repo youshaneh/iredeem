@@ -6,7 +6,7 @@ function About() {
     const { pathname } = useLocation();  
     useEffect(() => {
       window.scrollTo(0, 0);
-    }, [pathname]);
+    });
     return (
         <Fragment>
             <section class="breadcrumb_area">

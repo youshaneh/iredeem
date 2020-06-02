@@ -1,0 +1,34 @@
+.calendar-month{
+  $day-width: 14.285%;
+
+  display:flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content:center;
+  width:100%;
+  height:100%;
+  .calendar-day {
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:$day-width;
+    height:50px;
+    color: gainsboro;
+    &.available{
+      color:black;
+    }
+    &.active:hover{
+      border:1px solid #000;
+    }
+  }
+  .weekday-label {
+    color: gray;
+    text-align: center;
+    width:$day-width;
+    margin: 8px 0px 10px 0px;
+  }
+  .calendar-month-header{
+    width:100%;
+    text-align: center;
+  }
+}

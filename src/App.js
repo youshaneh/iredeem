@@ -1,16 +1,10 @@
 import React, { Fragment } from 'react';
-import Home from './Home.js';
+import { BrowserRouter, Link, NavLink, Route, Switch } from "react-router-dom";
 import About from './About.js';
-import Footer from './Footer.js';
-import logo from './image/logo.png';
 import './App.css';
-import {
-  BrowserRouter,
-  Switch,
-  Route,
-  Link,
-  NavLink
-} from "react-router-dom";
+import Footer from './Footer.js';
+import Home from './Home.js';
+import logo from './image/logo.png';
 import Search from './Search.js';
 
 function App() {
@@ -45,7 +39,7 @@ function App() {
           </div>
         </header>
         <Switch>
-          <Route path="/search">
+          <Route path={["/search/:departure/:arrival/:cabin", "/search"]}>
             <Search/>
           </Route>
           <Route path="/about">

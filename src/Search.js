@@ -1,13 +1,13 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
+import { useParams } from "react-router-dom";
 import SearchPanel from './SearchPanel';
-import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import SearchResult from "./SearchResult";
 
 function Search() {
-    const { pathname } = useLocation();  
+    let { departure, arrival, cabin } = useParams();
     useEffect(() => {
-      window.scrollTo(0, 0);
-    }, [pathname]);
+        window.scrollTo(0, 0);
+    }, []);
     return (
         <Fragment>
             <section className="banner_area">
@@ -19,23 +19,9 @@ function Search() {
                         </div>
                     </div>
                 </div>
-                <SearchPanel />
+                <SearchPanel departure={departure} arrival={arrival} cabin={cabin} />
             </section>
-            <section className="about_history_area section_gap">
-                <div className="container">
-                    <div className="row">
-                        <div className="col-md-6 d_flex align-items-center">
-                            <div className="about_content ">
-                                <h2 className="title title_color">About Us <br />Our History<br />Mission & Vision</h2>
-                                <p>inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially in the workplace. That’s why it’s crucial that, as women, our behavior on the job is beyond reproach. inappropriate behavior is often laughed.</p>
-                                <a href="#" className="button_hover theme_btn_two">Request Custom Price</a>
-                            </div>
-                        </div>
-                        <div className="col-md-6">
-                        </div>
-                    </div>
-                </div>
-            </section>
+            <SearchResult departure={departure} arrival={arrival} cabin={cabin}/>
         </Fragment>
     )
 }
