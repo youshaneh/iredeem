@@ -2,12 +2,14 @@ import React, { Fragment, useEffect } from 'react';
 import { useParams } from "react-router-dom";
 import SearchPanel from './SearchPanel';
 import SearchResult from "./SearchResult";
+import SearchCalendar from './SearchCalendar';
 
 function Search() {
-    let { departure, arrival, cabin } = useParams();
+    let params = useParams();
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
+
     return (
         <Fragment>
             <section className="banner_area">
@@ -19,9 +21,13 @@ function Search() {
                         </div>
                     </div>
                 </div>
-                <SearchPanel departure={departure} arrival={arrival} cabin={cabin} />
+                <SearchPanel {...params} autoRefresh={true} />
             </section>
-            <SearchResult departure={departure} arrival={arrival} cabin={cabin}/>
+
+            <section className="about_history_area subsection_gap">
+                <SearchCalendar {...params} />
+                <SearchResult {...params} />
+            </section>
         </Fragment>
     )
 }

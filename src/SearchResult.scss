@@ -1,0 +1,95 @@
+.result-item{
+  border:2px solid #ccc;
+  color: #777;
+  padding: 15px 0px;
+  margin: 25px;
+  display: flex;
+
+  &.not-available{
+    opacity: 30%;
+  }
+  &:hover{
+    border:2px solid #888;
+  }
+  .center{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .mileage-requirement{    
+    display:flex;
+    flex-wrap: wrap;
+    align-items:baseline;
+    justify-content:center;
+    margin: -5px 0px;
+    .mileage{
+      color: black;
+      font-weight: 400;
+      font-size: 1.8em;
+    }
+    .unit{
+      padding: 0px 10px 0px 5px;
+      font-size: 0.8em;
+    }
+  }
+  .flight-info-row{
+    padding: 15px;
+    display: flex;
+    span{
+      display: inline-block;
+    }
+    .terminal{
+      .time{
+        font-weight: 400;
+        font-size: 1.6em;
+      }
+      .airport{
+        font-weight: 400;
+        font-size: 1.4em;
+      }
+    }
+    .flight{
+      border-top: thick solid #ccc;
+      display: flex;
+      flex-grow: 1;
+      margin: 20px 10px 10px 10px;
+    }
+    .stopover{
+      margin-top: 8px;
+      width: 10px;
+      text-align: center;
+      .airport{
+        margin-left: -10px;
+      }
+    }
+  }
+  .padding{
+    display: flex;
+    flex-grow: 1;
+  }
+}
+
+.flight-number-row{
+  .arrow{
+    padding: 0px 10px 0px 2px;
+  }
+  .flight-number{
+    $height: 35px;
+  
+    display: inline-block;
+    padding: 0px 5px;
+    height: $height;
+    line-height: $height;
+  
+    img{
+      margin-top: -4px;
+      height: 25px;
+      width: 25px;
+    }
+    span{
+      margin-top: auto;
+      margin-bottom: auto;
+      padding: 0px 8px;
+    }
+  }
+}

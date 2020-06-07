@@ -117,6 +117,10 @@ button:focus {
   padding: 120px 0;
 }
 
+.subsection_gap {
+  margin: 100px 0;
+}
+
 .d_flex {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -593,7 +597,6 @@ button:focus {
 }
 
 .hotel_booking_table .book_tabel_item .form-control {
-  border: 1px solid #2b3146;
   background: transparent;
   border-radius: 0px;
   font-size: 13px;

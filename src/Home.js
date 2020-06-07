@@ -1,14 +1,11 @@
-import React, { Fragment } from 'react';
-import about_bg from './image/about_bg.jpg';
+import React, { Fragment, useEffect } from 'react';
 import './Home.scss';
+import about_bg from './image/about_bg.jpg';
 import SearchPanel from './SearchPanel';
-import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
 
 function Home() {
-    const { pathname } = useLocation();  
     useEffect(() => {
-      window.scrollTo(0, 0);
+        window.scrollTo(0, 0);
     });
     return (
         <Fragment>

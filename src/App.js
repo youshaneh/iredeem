@@ -39,15 +39,15 @@ function App() {
           </div>
         </header>
         <Switch>
-          <Route path={["/search/:departure/:arrival/:cabin", "/search"]}>
-            <Search/>
+          <Route path={["/search/:departure/:arrival/:cabin/:date", "/search/:departure/:arrival/:cabin", "/search"]}>
+            <Search />
           </Route>
           <Route path="/about">
-            <About/>
+            <About />
           </Route>
           <Route path="/">
             <Fragment>
-              <Home/>
+              <Home />
             </Fragment>
           </Route>
         </Switch>
