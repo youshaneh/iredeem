@@ -39,6 +39,7 @@
       display: inline-block;
     }
     .terminal{
+      width: 62px;
       .time{
         font-weight: 400;
         font-size: 1.6em;
@@ -56,10 +57,18 @@
     }
     .stopover{
       margin-top: 8px;
-      width: 10px;
+      margin-left: -10px;
+      margin-right: -10px;
       text-align: center;
+      .dot {
+        height: 8px;
+        width: 8px;
+        background-color: #888;
+        border-radius: 50%;
+        display: inline-block;
+      }
       .airport{
-        margin-left: -10px;
+        width: 30px;
       }
     }
   }

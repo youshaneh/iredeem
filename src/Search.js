@@ -5,7 +5,6 @@ import SearchResult from "./SearchResult";
 import SearchCalendar from './SearchCalendar';
 import SearchOptions from './SearchOptions';
 
-
 function Search() {
     let params = useParams();
     useEffect(() => {

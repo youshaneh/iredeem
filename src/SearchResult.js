@@ -3,6 +3,7 @@ import { getMileageRequirement } from './utils.js'
 import './SearchResult.scss';
 import CenterSpinner from './CenterSpinner.js';
 import { SearchOptionContext, } from './Contexts.js'
+import { Collapse } from 'react-bootstrap';
 
 function SearchResult(props) {
     const [itineraries, setItineraries] = useState(props.date ? undefined : []);
@@ -29,7 +30,7 @@ function SearchResult(props) {
         content = itineraries ?
             itineraries.map(itinerary =>
                 <ResultItem key={itinerary.itineraryId} itinerary={itinerary} cabin={props.cabin} />) :
-            <div class="loading"><CenterSpinner /></div>
+            <div className="loading"><CenterSpinner /></div>
     }
     return (
         <section className="result_area">
@@ -48,42 +49,44 @@ function ResultItem(props) {
     let { flight1, flight2 } = props.itinerary;
     let isAvailable = !isNaN(flight1[`status${props.cabin}`]) && (!flight2 || !isNaN(flight2[`status${props.cabin}`]));
     const { nonStopOnly, availableOnly } = useContext(SearchOptionContext);
-    if (nonStopOnly && flight2) return null;
-    if (availableOnly && !isAvailable) return null;
     return (
-        <div className={`result-item ${isAvailable ? '' : 'not-available'}`}>
-            <div className="container">
-                <div className="row">
-                    <div className="col-md">
-                        <div className="flight-number-row">
-                            <FlightNumber flight={flight1} />
-                            {flight2 && <span className="arrow">→</span>}
-                            {flight2 && <FlightNumber flight={flight2} />}
+        <Collapse in={!(nonStopOnly && flight2) && !(availableOnly && !isAvailable)}>
+            <div className={`result-item ${isAvailable ? '' : 'not-available'}`}>
+                <div className="container">
+                    <div className="row">
+                        <div className="col-md">
+                            <div className="flight-number-row">
+                                <FlightNumber flight={flight1} />
+                                {flight2 && <span className="arrow">→</span>}
+                                {flight2 && <FlightNumber flight={flight2} />}
+                            </div>
+                            <div className="flight-info-row">
+                                <Terminal time={flight1.departureTime} airport={flight1.departureAirport} />
+                                <span className="flight" />
+                                {flight2 &&
+                                    <span className="stopover">
+                                        <div>
+                                            <span className="dot"></span>
+                                        </div>
+                                        <div className="airport">
+                                            {flight2.departureAirport}
+                                        </div>
+                                    </span>}
+                                {flight2 && <span className="flight" />}
+                                <Terminal time={flight2?.arrivalTime || flight1?.arrivalTime} airport={flight2?.arrivalAirport || flight1?.arrivalAirport} />
+                            </div>
                         </div>
-                        <div className="flight-info-row">
-                            <Terminal time={flight1.departureTime} airport={flight1.departureAirport} />
-                            <span className="flight" />
-                            {flight2 &&
-                                <span className="stopover">
-                                    <div>●</div>
-                                    <div className="airport">
-                                        {flight2.departureAirport}
-                                    </div>
-                                </span>}
-                            {flight2 && <span className="flight" />}
-                            <Terminal time={flight2?.arrivalTime || flight1?.arrivalTime} airport={flight2?.arrivalAirport || flight1?.arrivalAirport} />
-                        </div>
-                    </div>
-                    <div className="col-md-2 center">
-                        <div className="d-md-none padding"></div>
-                        <div className="mileage-requirement">
-                            <span className="mileage">{getMileageRequirement(flight1, flight2, props.cabin)}</span>
-                            <span className="unit">miles</span>
+                        <div className="col-md-2 center">
+                            <div className="d-md-none padding"></div>
+                            <div className="mileage-requirement">
+                                <span className="mileage">{getMileageRequirement(flight1, flight2, props.cabin)}</span>
+                                <span className="unit">miles</span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </Collapse>
     );
 }
 
