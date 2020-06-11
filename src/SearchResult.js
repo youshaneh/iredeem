@@ -1,31 +1,42 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { getMileageRequirement } from './utils.js'
 import './SearchResult.scss';
+import CenterSpinner from './CenterSpinner.js';
+import { SearchOptionContext, } from './Contexts.js'
 
 function SearchResult(props) {
-    const [itineraries, setItineraries] = useState([]);
+    const [itineraries, setItineraries] = useState(props.date ? undefined : []);
     let selectedDay = new Date(props.date);
     let nextDay = new Date(selectedDay.getTime() + 24 * 60 * 60 * 1000);
     useEffect(() => {
-        if (!(props.departure && props.arrival && props.date)) return
+        if (!(props.departure && props.arrival && props.date)) return;
+        setItineraries(undefined);
         fetch(`https://iredeem-server.herokuapp.com/itinerary?departure=${props.departure}&arrival=${props.arrival}&since=${selectedDay.toISOString().split('T')[0]}&till=${nextDay.toISOString().split('T')[0]}`, { method: 'get' })
             .then(function (response) {
                 if (!response.ok) throw new Error(response.statusText)
                 return response.json();
             })
             .then(function (responseJson) {
+                responseJson.sort((a, b) => new Date(a.flight1.departureTime).getTime() - new Date(b.flight1.departureTime).getTime());
                 setItineraries(responseJson);
             })
             .catch(function (err) {
                 console.error(err);
             })
     }, [props.departure, props.arrival, props.date]);
+    let content;
+    if (props.date) {
+        content = itineraries ?
+            itineraries.map(itinerary =>
+                <ResultItem key={itinerary.itineraryId} itinerary={itinerary} cabin={props.cabin} />) :
+            <div class="loading"><CenterSpinner /></div>
+    }
     return (
-        <section className="subsection_gap">
+        <section className="result_area">
             <div className="container">
                 <div className="row">
                     <div className="col">
-                        {itineraries.map(itinerary => <ResultItem key={itinerary.itineraryId} itinerary={itinerary} cabin={props.cabin} />)}
+                        {content}
                     </div>
                 </div>
             </div>
@@ -36,6 +47,9 @@ function SearchResult(props) {
 function ResultItem(props) {
     let { flight1, flight2 } = props.itinerary;
     let isAvailable = !isNaN(flight1[`status${props.cabin}`]) && (!flight2 || !isNaN(flight2[`status${props.cabin}`]));
+    const { nonStopOnly, availableOnly } = useContext(SearchOptionContext);
+    if (nonStopOnly && flight2) return null;
+    if (availableOnly && !isAvailable) return null;
     return (
         <div className={`result-item ${isAvailable ? '' : 'not-available'}`}>
             <div className="container">

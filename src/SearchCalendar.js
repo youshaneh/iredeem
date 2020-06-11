@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink, useRouteMatch } from "react-router-dom";
-import './Calendar.scss';
+import './SearchCalendar.scss';
 import { weekdayLabels, getLocalDateString } from './utils';
+import CenterSpinner from './CenterSpinner.js';
 
 function SearchCalendar(props) {
     let date = new Date();
@@ -40,7 +41,14 @@ function CalendarMonth(props) {
     for (let i = firstDayNextMonth.getDay() || 7; i < 7; i++) dates.push(null);
 
     useEffect(() => {
-        fetch(`https://iredeem-server.herokuapp.com/availability?departure=${props.departure}&arrival=${props.arrival}&since=${getLocalDateString(firstDay)}&till=${getLocalDateString(firstDayNextMonth)}`, { method: 'get' })
+        if(!props.departure || !props.arrival) {
+            setAvailabilities([]);
+            return;
+        }
+        else{
+            setAvailabilities(undefined);
+        }
+        fetch(`https://iredeem-server.herokuapp.com/availability?departure=${props.departure}&arrival=${props.arrival}&since=${getLocalDateString(new Date())}&till=${getLocalDateString(firstDayNextMonth)}`, { method: 'get' })
             .then(function (response) {
                 if (!response.ok) throw new Error(response.statusText)
                 return response.json();
@@ -51,24 +59,30 @@ function CalendarMonth(props) {
             .catch(function (err) {
                 console.error(err);
             })
-    }, [props.departure, props.arrival, props.date]);
+    }, [props.departure, props.arrival]);
 
     return (
         <div className="calendar-month">
             <h5 className="calendar-month-header">{firstDay.toLocaleString('default', { month: 'long' })}</h5>
             {weekdayLabels.map((label, index) => <div key={index} className="weekday-label">{label}</div>)}
+            {availabilities == undefined && <div className="loading"><CenterSpinner /></div>}
             {dates.map((calendarDate, index) => <CalendarDate key={index} calendarDate={calendarDate} available={availabilities && availabilities[calendarDate && getLocalDateString(calendarDate)]?.[props.cabin]} {...props} />)}
         </div>
     );
 }
 
 function CalendarDate(props) {
-    let match = useRouteMatch();
     return (
         <div className={`calendar-day ${props.calendarDate ? 'active ' : ''} ${props.available ? 'available ' : ''}`}>
-            {props.calendarDate && (<NavLink to={`/search/${props.departure}/${props.arrival}/${props.cabin}/${getLocalDateString(props.calendarDate)}`} activeClassName="selected">
-                {props.calendarDate.getDate()}
-            </NavLink>)}
+            {props.calendarDate && (
+                (props.departure && props.arrival && props.cabin) ?
+                    (<NavLink to={`/search/${props.departure}/${props.arrival}/${props.cabin}/${getLocalDateString(props.calendarDate)}`} activeClassName="selected">
+                        {props.calendarDate.getDate()}
+                    </NavLink>) :
+                    (<span>
+                        {props.calendarDate.getDate()}
+                    </span>))
+            }
         </div>
     );
 }

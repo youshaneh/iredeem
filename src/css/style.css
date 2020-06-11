@@ -118,7 +118,7 @@ button:focus {
 }
 
 .subsection_gap {
-  margin: 100px 0;
+  margin: 100px 0 10px 0;
 }
 
 .d_flex {
@@ -590,10 +590,6 @@ button:focus {
 
 .book_tabel_item .form-group .input-group {
   position: relative;
-}
-
-.wide{
-  margin-bottom: 10px;
 }
 
 .hotel_booking_table .book_tabel_item .form-control {
@@ -2970,7 +2966,7 @@ h1, h2, h3, h4, h5, h6 {
   width: 35px;
   height: 17px;
   border-radius: 8.5px;
-  background: #fff;
+  background: #aaa;
   position: relative;
   cursor: pointer;
 }
