@@ -3,24 +3,39 @@ import { NavLink, useRouteMatch } from "react-router-dom";
 import './SearchCalendar.scss';
 import { weekdayLabels, getLocalDateString } from './utils';
 import CenterSpinner from './CenterSpinner.js';
+import { RiArrowLeftSLine, RiArrowRightSLine } from 'react-icons/ri';
 
 function SearchCalendar(props) {
-    let date = new Date();
+    const [fitstMonthDateTime, setFitstMonthDateTime] = useState(new Date().getTime());
+    let date = new Date(fitstMonthDateTime)
     let thisMonth = getLocalDateString(date).substring(0, 7);
     date.setMonth(date.getMonth() + 1);
     let nextMonth = getLocalDateString(date).substring(0, 7);
+    function changeMonth(offset){
+        let newMonthDate = new Date(fitstMonthDateTime)
+        newMonthDate.setMonth(newMonthDate.getMonth() + offset);
+        setFitstMonthDateTime(newMonthDate.getTime());
+    }
     return (
         <section className="subsection_gap">
-            <div className="container">
-                <div className="row">
-                    <div className="col-md">
-                        <CalendarMonth month={thisMonth} {...props} />
+            <div className="arrow-container">
+                <div className="arrow-span" onClick={() => changeMonth(-1)}>
+                    <RiArrowLeftSLine className="arrow" />
+                </div>
+                <div className="container">
+                    <div className="row">
+                        <div className="col-md">
+                            <CalendarMonth month={thisMonth} {...props} />
+                        </div>
+                        <div className="d-none d-md-block col-md">
+                            <CalendarMonth month={nextMonth} {...props} />
+                        </div>
                     </div>
-                    <div className="col-md">
-                        <CalendarMonth month={nextMonth} {...props} />
+                    <div>
                     </div>
                 </div>
-                <div>
+                <div className="arrow-span" onClick={() => changeMonth(1)}>
+                    <RiArrowRightSLine className="arrow" />
                 </div>
             </div>
         </section>
@@ -41,11 +56,11 @@ function CalendarMonth(props) {
     for (let i = firstDayNextMonth.getDay() || 7; i < 7; i++) dates.push(null);
 
     useEffect(() => {
-        if(!props.departure || !props.arrival) {
+        if (!props.departure || !props.arrival) {
             setAvailabilities([]);
             return;
         }
-        else{
+        else {
             setAvailabilities(undefined);
         }
         fetch(`https://iredeem-server.herokuapp.com/availability?departure=${props.departure}&arrival=${props.arrival}&since=${getLocalDateString(new Date())}&till=${getLocalDateString(firstDayNextMonth)}`, { method: 'get' })
@@ -59,7 +74,7 @@ function CalendarMonth(props) {
             .catch(function (err) {
                 console.error(err);
             })
-    }, [props.departure, props.arrival]);
+    }, [props.departure, props.arrival, props.month]);
 
     return (
         <div className="calendar-month">

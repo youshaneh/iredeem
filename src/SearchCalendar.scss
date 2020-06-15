@@ -1,13 +1,43 @@
+.arrow-container{
+  display:flex;
+  .container{
+    margin: 0;
+    padding: 0;
+    .row{
+      margin: 0;
+      padding: 0;
+    }
+  }
+  .arrow-span{
+    flex-grow: 1;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding: 15px;
+    &:hover{
+      background-color: #eeeeeeaa;
+    }
+    .arrow{
+      height: 50px;
+      width: 50px;
+      margin: 0 -15px;
+      color: #bbb;
+    }
+  }
+  
+}
+
 .calendar-month{
   $day-width: 14.285%;
 
-  padding: 0px 15px;
+  padding: 0px 0px;
   display:flex;
   flex-direction: row;
   flex-wrap: wrap;
+  align-content: flex-start;
   justify-content:center;
   width:100%;
-  height:100%;
+  height:374px;
   .loading{
     width: 100%;
     position: absolute;
