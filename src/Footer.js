@@ -8,8 +8,12 @@ function Footer() {
                 <div className="row">
                     <div className="col-lg-12  col-md-12 col-sm-12">
                         <div className="single-footer-widget">
-                            <h6 className="footer_title">About Agency</h6>
-                            <p>The world has become so fast paced that people don’t want to stand by reading a page of information, they would much rather look at a presentation and understand the message. It has come to a point </p>
+                            <h6 className="footer_title">About the data</h6>
+                            <p>
+                                We try our best to keep the data up to date.
+                                However, the award ticket status is subject to change.
+                                In case of any inconsistency, the information shown on <a href="https://www.asiamiles.com" target="_blank" rel="noopener noreferrer" >asiamiles.com</a> shall prevail.
+                            </p>
                         </div>
                     </div>
                 </div>

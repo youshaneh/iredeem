@@ -7,11 +7,11 @@ import { Collapse } from 'react-bootstrap';
 
 function SearchResult(props) {
     const [itineraries, setItineraries] = useState(props.date ? undefined : []);
-    let selectedDay = new Date(props.date);
-    let nextDay = new Date(selectedDay.getTime() + 24 * 60 * 60 * 1000);
     useEffect(() => {
         if (!(props.departure && props.arrival && props.date)) return;
         setItineraries(undefined);
+        let selectedDay = new Date(props.date);
+        let nextDay = new Date(selectedDay.getTime() + 24 * 60 * 60 * 1000);
         fetch(`https://iredeem-server.herokuapp.com/itinerary?departure=${props.departure}&arrival=${props.arrival}&since=${selectedDay.toISOString().split('T')[0]}&till=${nextDay.toISOString().split('T')[0]}`, { method: 'get' })
             .then(function (response) {
                 if (!response.ok) throw new Error(response.statusText)
@@ -93,7 +93,7 @@ function ResultItem(props) {
 function FlightNumber(props) {
     return (
         <div className="flight-number">
-            <img className="airline-logo" src={`${process.env.PUBLIC_URL}/image/logo/${props.flight.airline}.png`} />
+            <img className="airline-logo" alt={props.flight.airline} src={`${process.env.PUBLIC_URL}/image/logo/${props.flight.airline}.png`} />
             <span>{props.flight.airline + props.flight.flightNumber}</span>
         </div>
     );

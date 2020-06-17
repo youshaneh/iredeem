@@ -1,15 +1,14 @@
-import React, { Fragment, useEffect, useState } from 'react';
-import { BrowserRouter, Link, NavLink, Route, Switch } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import About from './About.js';
 import './App.css';
 import { RouteContext, SearchOptionContext } from './Contexts.js';
 import Footer from './Footer.js';
+import Header from './Header.js';
 import Home from './Home.js';
 import Search from './Search.js';
-import Header from './Header.js'
 
 function App() {
-  const [timestamp, setTimestamp] = useState(new Date().getTime());
   const [nonStopOnly, setNonStopOnly] = useState(false);
   const [availableOnly, setAvailableOnly] = useState(false);
   const [routes, setRoutes] = useState();
@@ -41,10 +40,7 @@ function App() {
       <SearchOptionContext.Provider value={{ nonStopOnly, availableOnly, setNonStopOnly, setAvailableOnly }}>
         <RouteContext.Provider value={{ routes }}>
           <div>
-            <Header key={timestamp} onSelect={() => {
-              setTimestamp(new Date().getTime());
-              window.scrollTo(0, 0);
-            }} />
+            <Header />
             <Switch>
               <Route path={["/search/:departure/:arrival/:cabin/:date", "/search/:departure/:arrival/:cabin", "/search"]}>
                 <Search />
@@ -53,9 +49,7 @@ function App() {
                 <About />
               </Route>
               <Route path="/">
-                <Fragment>
-                  <Home />
-                </Fragment>
+                <Home />
               </Route>
             </Switch>
             <Footer />

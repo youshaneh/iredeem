@@ -1,16 +1,13 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment } from 'react';
+import { AboutContent } from './About';
 import './Home.scss';
-import about_bg from './image/about_bg.jpg';
 import SearchPanel from './SearchPanel';
 
 function Home() {
-    useEffect(() => {
-        window.scrollTo(0, 0);
-    });
     return (
         <Fragment>
             <Banner />
-            <About />
+            <AboutContent />
         </Fragment>
     );
 }
@@ -22,35 +19,17 @@ function Banner() {
                 <div className="overlay bg-parallax" data-stellar-ratio="0.9" data-stellar-vertical-offset="0" data-background=""></div>
                 <div className="container">
                     <div className="banner_content text-center">
-                        <h6>Away from monotonous life</h6>
-                        <h2>Relax Your Mind</h2>
-                        <p>If you are looking at blank cassettes on the web, you may be very confused at the<br /> difference in price. You may see some for as low as $.17 each.</p>
-                        <a href="#" className="btn theme_btn button_hover">Get Started</a>
+                        <h6>Redeem award tickets</h6>
+                        <h2>Start Your Journey</h2>
+                        <p>
+                            Asia Miles is Asia’s leading travel rewards program.<br/>
+                            iRedeem helps you find award seats in a faster and simpler way. 
+                        </p>
+                        <a href="https://www.asiamiles.com" target="_blank" rel="noopener noreferrer" className="theme_btn button_hover">Learn More about Asia Miles</a>
                     </div>
                 </div>
             </div>
             <SearchPanel />
-        </section>
-    )
-}
-
-function About() {
-    return (
-        <section className="about_history_area section_gap">
-            <div className="container">
-                <div className="row">
-                    <div className="col-md-6 d_flex align-items-center">
-                        <div className="about_content ">
-                            <h2 className="title title_color">About Us <br />Our History<br />Mission & Vision</h2>
-                            <p>inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially in the workplace. That’s why it’s crucial that, as women, our behavior on the job is beyond reproach. inappropriate behavior is often laughed.</p>
-                            <a href="#" className="button_hover theme_btn_two">Request Custom Price</a>
-                        </div>
-                    </div>
-                    <div className="col-md-6">
-                        <img className="img-fluid" src={about_bg} alt="img" />
-                    </div>
-                </div>
-            </div>
         </section>
     )
 }

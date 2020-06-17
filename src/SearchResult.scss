@@ -106,3 +106,9 @@
 .result_area{
   padding: 20px 0 50px 0;
 }
+
+@media (max-width: 1200px) {
+  .result_area{
+    padding: 0px 0 50px 0;
+  }
+}

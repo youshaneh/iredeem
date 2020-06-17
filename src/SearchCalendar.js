@@ -1,21 +1,49 @@
 import React, { useEffect, useState } from 'react';
-import { NavLink, useRouteMatch } from "react-router-dom";
-import './SearchCalendar.scss';
-import { weekdayLabels, getLocalDateString } from './utils';
-import CenterSpinner from './CenterSpinner.js';
 import { RiArrowLeftSLine, RiArrowRightSLine } from 'react-icons/ri';
+import { NavLink } from "react-router-dom";
+import CenterSpinner from './CenterSpinner.js';
+import './SearchCalendar.scss';
+import { getLocalDateString, weekdayLabels } from './utils';
 
 function SearchCalendar(props) {
-    const [fitstMonthDateTime, setFitstMonthDateTime] = useState(new Date().getTime());
-    let date = new Date(fitstMonthDateTime)
-    let thisMonth = getLocalDateString(date).substring(0, 7);
+    const [dateTimeInFirstMonth, setDateTimeInFirstMonth] = useState(new Date().getTime());
+    let date = new Date(dateTimeInFirstMonth)
+    let firstMonth = getLocalDateString(date).substring(0, 7);
     date.setMonth(date.getMonth() + 1);
-    let nextMonth = getLocalDateString(date).substring(0, 7);
-    function changeMonth(offset){
-        let newMonthDate = new Date(fitstMonthDateTime)
-        newMonthDate.setMonth(newMonthDate.getMonth() + offset);
-        setFitstMonthDateTime(newMonthDate.getTime());
+    let secondMonth = getLocalDateString(date).substring(0, 7);
+    function changeMonth(offset) {
+        let newDateInFirstMonth = new Date(dateTimeInFirstMonth)
+        newDateInFirstMonth.setMonth(newDateInFirstMonth.getMonth() + offset);
+        setDateTimeInFirstMonth(newDateInFirstMonth.getTime());
     }
+
+    const [availabilities, setAvailabilities] = useState({});
+    let { departure, arrival } = props;
+    if (availabilities.departure !== departure ||
+        availabilities.arrival !== arrival) {
+        setAvailabilities({ departure, arrival });
+    }
+    useEffect(() => {
+        function update(month) {
+            if (availabilities[month]) return;
+            let firstDay = new Date(month);
+            let firstDayNextMonth = new Date(firstDay.getFullYear(), firstDay.getMonth() + 1, 1);
+            fetch(`https://iredeem-server.herokuapp.com/availability?departure=${departure}&arrival=${arrival}&since=${getLocalDateString(firstDay)}&till=${getLocalDateString(firstDayNextMonth)}`, { method: 'get' })
+                .then(function (response) {
+                    if (!response.ok) throw new Error(response.statusText);
+                    return response.json();
+                })
+                .then(function (responseJson) {
+                    setAvailabilities(availabilities => ({ ...availabilities, [month]: responseJson }));
+                })
+                .catch(function (err) {
+                    console.error(err);
+                })
+        }
+        update(firstMonth);
+        update(secondMonth);
+    }, [departure, arrival, firstMonth, secondMonth, availabilities]);
+
     return (
         <section className="subsection_gap">
             <div className="arrow-container">
@@ -25,10 +53,11 @@ function SearchCalendar(props) {
                 <div className="container">
                     <div className="row">
                         <div className="col-md">
-                            <CalendarMonth month={thisMonth} {...props} />
+                            <CalendarMonth month={firstMonth} availabilities={!(departure && arrival) ? [] : availabilities[firstMonth]} {...props} />
                         </div>
+                        <div className="d-none d-md-block padding-between-month"></div>
                         <div className="d-none d-md-block col-md">
-                            <CalendarMonth month={nextMonth} {...props} />
+                            <CalendarMonth month={secondMonth} availabilities={!(departure && arrival) ? [] : availabilities[secondMonth]} {...props} />
                         </div>
                     </div>
                     <div>
@@ -46,42 +75,20 @@ function CalendarMonth(props) {
     let dates = [];
     let firstDay = new Date(props.month);
     let firstDayNextMonth = new Date(firstDay.getFullYear(), firstDay.getMonth() + 1, 1);
-
-    const [availabilities, setAvailabilities] = useState();
-
     for (let i = 0; i < firstDay.getDay(); i++) dates.push(null);
-    for (let date = new Date(firstDay.getTime()); date.getMonth() == firstDay.getMonth(); date.setDate(date.getDate() + 1)) {
+    for (let date = new Date(firstDay.getTime()); date.getMonth() === firstDay.getMonth(); date.setDate(date.getDate() + 1)) {
         dates.push(new Date(date.getTime()));
     }
     for (let i = firstDayNextMonth.getDay() || 7; i < 7; i++) dates.push(null);
-
-    useEffect(() => {
-        if (!props.departure || !props.arrival) {
-            setAvailabilities([]);
-            return;
-        }
-        else {
-            setAvailabilities(undefined);
-        }
-        fetch(`https://iredeem-server.herokuapp.com/availability?departure=${props.departure}&arrival=${props.arrival}&since=${getLocalDateString(new Date())}&till=${getLocalDateString(firstDayNextMonth)}`, { method: 'get' })
-            .then(function (response) {
-                if (!response.ok) throw new Error(response.statusText)
-                return response.json();
-            })
-            .then(function (responseJson) {
-                setAvailabilities(responseJson);
-            })
-            .catch(function (err) {
-                console.error(err);
-            })
-    }, [props.departure, props.arrival, props.month]);
-
     return (
         <div className="calendar-month">
-            <h5 className="calendar-month-header">{firstDay.toLocaleString('default', { month: 'long' })}</h5>
+            <h4 className="calendar-month-header">{firstDay.toLocaleString('default', { month: 'long' })}</h4>
             {weekdayLabels.map((label, index) => <div key={index} className="weekday-label">{label}</div>)}
-            {availabilities == undefined && <div className="loading"><CenterSpinner /></div>}
-            {dates.map((calendarDate, index) => <CalendarDate key={index} calendarDate={calendarDate} available={availabilities && availabilities[calendarDate && getLocalDateString(calendarDate)]?.[props.cabin]} {...props} />)}
+            {props.availabilities === undefined && <div className="loading"><CenterSpinner /></div>}
+            {dates.map((calendarDate, index) => {
+                let available = calendarDate && props.availabilities && props.availabilities[getLocalDateString(calendarDate)]?.[props.cabin];
+                return <CalendarDate key={props.month + index} calendarDate={calendarDate} available={available} {...props} />
+            })}
         </div>
     );
 }
@@ -94,7 +101,13 @@ function CalendarDate(props) {
                     (<NavLink to={`/search/${props.departure}/${props.arrival}/${props.cabin}/${getLocalDateString(props.calendarDate)}`} activeClassName="selected">
                         {props.calendarDate.getDate()}
                     </NavLink>) :
-                    (<span>
+                    (<span onClick={() => {
+                        window.scrollTo({
+                            top: document.querySelector('.hotel_booking_area').offsetTop - (document.querySelector('.header_area')?.offsetHeight),
+                            left: 0,
+                            behavior: 'smooth'
+                        });
+                    }}>
                         {props.calendarDate.getDate()}
                     </span>))
             }

@@ -1,18 +1,12 @@
-import React, { Fragment, useEffect, useState } from 'react';
-import { useParams, useLocation } from "react-router-dom";
-import SearchPanel from './SearchPanel';
-import SearchResult from "./SearchResult";
+import React, { Fragment } from 'react';
+import { useParams } from "react-router-dom";
 import SearchCalendar from './SearchCalendar';
 import SearchOptions from './SearchOptions';
+import SearchPanel from './SearchPanel';
+import SearchResult from "./SearchResult";
 
 function Search() {
     let params = useParams();
-    useEffect(() => {
-        window.scrollTo(0, 0);
-    }, []);
-
-    let location = useLocation();
-
     return (
         <Fragment>
             <section className="banner_area">
@@ -24,12 +18,12 @@ function Search() {
                         </div>
                     </div>
                 </div>
-                <SearchPanel key={(location.pathname == '/search')? new Date().getTime() : ''} {...params} autoRefresh={true} />
+                <SearchPanel {...params} timestamp={new Date().getTime()} autoRefresh={true} />
             </section>
             <section className="about_history_area subsection_gap">
                 <SearchCalendar {...params} />
                 <SearchOptions />
-                {<SearchResult {...params} />}
+                <SearchResult {...params} />
             </section>
         </Fragment>
     )

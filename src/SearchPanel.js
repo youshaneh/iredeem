@@ -7,9 +7,18 @@ import { RouteContext } from './Contexts.js'
 
 function SearchPanel(props) {
     const { routes } = useContext(RouteContext);
+
     const [departure, setDeparture] = useState(props.departure || '');
     const [arrival, setArrival] = useState(props.arrival || '');
     const [cabin, setCabin] = useState(props.cabin || 'B');
+
+    const [timestamp, setTimestamp] = useState({});
+    if (timestamp !== props.timestamp) {
+        setTimestamp(props.timestamp);
+        setDeparture(props.departure || '');
+        setArrival(props.arrival || '');
+        setCabin(props.cabin || 'B');
+    }
 
     let departures = new Set();
     let arrivals = new Set();
@@ -22,19 +31,19 @@ function SearchPanel(props) {
     let options = [Array.from(departures), Array.from(arrivals)]
 
     function isValid({ departure, arrival }) {
-        if (departure != undefined && arrival != undefined) throw new Error('leave either departure or arrival undefined to check if the other field is valid')
+        if (departure !== undefined && arrival !== undefined) throw new Error('leave either departure or arrival undefined to check if the other field is valid')
         let fixedValue = departure ? departure : arrival;
         let fixedIndex = departure ? 0 : 1;
         return options[fixedIndex].includes(fixedValue);
     }
 
     function getAvailableOptions({ departure, arrival }) {
-        if (departure != undefined && arrival != undefined) throw new Error('leave either departure or arrival undefined to get available options for the field')
-        let fixedValue = (departure != undefined) ? departure : arrival;
-        let fixedIndex = (departure != undefined) ? 0 : 1;
+        if (departure !== undefined && arrival !== undefined) throw new Error('leave either departure or arrival undefined to get available options for the field')
+        let fixedValue = (departure !== undefined) ? departure : arrival;
+        let fixedIndex = (departure !== undefined) ? 0 : 1;
         let optionIndex = 1 - fixedIndex;
         return isValid({ departure, arrival }) ?
-            routes?.flatMap(route => (route[fixedIndex] == fixedValue) ? [route[optionIndex]] : [])
+            routes?.flatMap(route => (route[fixedIndex] === fixedValue) ? [route[optionIndex]] : [])
             : options[optionIndex];
     }
 
@@ -46,19 +55,20 @@ function SearchPanel(props) {
 
     const [showWarning, setShowWarning] = useState(false);
     let history = useHistory();
-    function search(showWarning) {
-        setShowWarning(departure || arrival || showWarning);
+    function search() {
+        setShowWarning(true);
         if (isDepartureValid && isArrivalValid) history.push(`/search/${departure}/${arrival}/${cabin}`);
     }
 
     useEffect(() => {
         if (props.autoRefresh) search();
-    }, [departure, arrival, cabin]);
+        // eslint-disable-next-line
+    }, [departure, arrival, cabin, props.autoRefresh]);
 
     return (
         <SearchPannelArea>
             <div className="col-md item">
-                {routes != undefined || <Spinner className="spinner" animation="border" variant="primary" size="sm" />}
+                {routes !== undefined || <Spinner className="spinner" animation="border" variant="primary" size="sm" />}
                 <input className={`wide form-control nice-select ${(showWarning && !isDepartureValid) ? 'invalid' : ''}`}
                     placeholder="Where from?"
                     autoComplete="off"
@@ -78,7 +88,7 @@ function SearchPanel(props) {
                 </datalist>
             </div>
             <div className="col-md item">
-                {routes != undefined || <Spinner className="spinner" animation="border" variant="primary" size="sm" />}
+                {routes !== undefined || <Spinner className="spinner" animation="border" variant="primary" size="sm" />}
                 <input className={`wide form-control nice-select ${(showWarning && !isArrivalValid) ? 'invalid' : ''}`}
                     placeholder="Where to?"
                     autoComplete="off"
@@ -111,7 +121,10 @@ function SearchPanel(props) {
             {!props.autoRefresh &&
                 <div className="col-md-2 item">
                     <div className="book_tabel_item">
-                        <a className="book_now_btn button_hover" onClick={() => search(true)}>Search</a>
+                        <a className="theme_btn button_hover" href="/search" onClick={(e) => {
+                            e.preventDefault();
+                            search();
+                        }}>Search</a>
                     </div>
                 </div>
             }
@@ -126,7 +139,7 @@ function SearchPannelArea(props) {
                 <div className="hotel_booking_table">
                     <div className="book_tabel_item">
                         <div className="row">
-                            {props.children};
+                            {props.children}
                         </div>
                     </div>
                 </div>

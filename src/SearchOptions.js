@@ -5,7 +5,7 @@ import { SearchOptionContext } from './Contexts.js'
 function SearchOptions(props) {
     const { nonStopOnly, setNonStopOnly, availableOnly, setAvailableOnly } = useContext(SearchOptionContext);
     return (
-        <section className="subsection_gap">
+        <section className="narrow_gap">
             <div className="container">
                 <div className="row">
                     <div className="col-6 col-md-4 col-lg-3">

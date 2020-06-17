@@ -1,12 +1,8 @@
 import React, { Fragment } from 'react';
-import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
+import about_bg from './image/about_bg.jpg';
 
 function About() {
-    const { pathname } = useLocation();  
-    useEffect(() => {
-      window.scrollTo(0, 0);
-    });
     return (
         <Fragment>
             <section className="breadcrumb_area">
@@ -17,22 +13,49 @@ function About() {
                     </div>
                 </div>
             </section>
-            <section className="about_history_area section_gap">
-                <div className="container">
-                    <div className="row">
-                        <div className="col-md-6 d_flex align-items-center">
-                            <div className="about_content ">
-                                <h2 className="title title_color">About Us Our History Mission & Vision</h2>
-                                <p>inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially in the workplace. That’s why it’s crucial that, as women, our behavior on the job is beyond reproach. inappropriate behavior is often laughed.</p>
-                                <a href="#" className="button_hover theme_btn_two">Request Custom Price</a>
-                            </div>
-                        </div>
-                        <div className="col-md-6">
+            <AboutContent />
+        </Fragment>
+    )
+}
+
+export function AboutContent(props) {
+    return (
+        <section className="about_history_area section_gap">
+            <div className="container">
+                <div className="row">
+                    <div className="col-md-6 d_flex align-items-center">
+                        <div className="about_content ">
+                            <h2 className="title title_color">About<br />Our Mission &amp; Vision</h2>
+                            <p>
+                                This website is designed by a fan of Cathay Pacific who has deposited tens of
+                                thousands of mileage into his Asia Miles Account only to find it difficult to
+                                find award seats to redeem.
+                                Although the official website is good for searching tickets on one specific day,
+                                chances are that you have to check dozens of days to find an award seat,
+                                which can be tedious and time consuming.<br />
+                                iRedeem tries to provide an intuitive way to find all award seats you might
+                                be interested in. We strive to track as many routes as possible
+                                and keep the data up to date in the hopes that everyone can redeem their mileage
+                                for award tickets and enjoy their trips.
+
+                            </p>
+                            <Link to="/search" className="button_hover theme_btn" onClick={() => {
+                                setTimeout(() => {
+                                    window.scrollTo({
+                                        top: 0,
+                                        left: 0,
+                                        behavior: 'smooth'
+                                    });
+                                }, 0)
+                            }}>Search</Link>
                         </div>
                     </div>
+                    <div className="col-md-6">
+                        <img className="img-fluid" src={about_bg} alt="img" />
+                    </div>
                 </div>
-            </section>
-        </Fragment>
+            </div>
+        </section>
     )
 }
 

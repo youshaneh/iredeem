@@ -121,6 +121,19 @@ button:focus {
   margin: 100px 0 10px 0;
 }
 
+.narrow_gap {
+  margin: 50px 0 10px 0;
+}
+
+@media (max-width: 1200px) {
+  .subsection_gap {
+    margin: 50px 0 5px 0;
+  }
+  .narrow_gap {
+    margin: 25px 0 10px 0;
+  }
+}
+
 .d_flex {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -175,7 +188,7 @@ button:focus {
   font-size: 14px;
   line-height: 30px;
   text-transform: uppercase;
-  color: #fff;
+  color: #555;
   font-weight: 600;
   background: #f3c300;
   padding: 5px 30px;
@@ -186,7 +199,7 @@ button:focus {
 }
 
 .theme_btn:hover {
-  color: #fff;
+  color: #888;
 }
 
 .white_btn {
@@ -230,10 +243,6 @@ button:focus {
   opacity: 0;
 }
 
-.button_hover:hover {
-  color: #fff;
-}
-
 .button_hover:hover:before {
   -webkit-transform: translateX(0);
   -ms-transform: translateX(0);
@@ -266,6 +275,10 @@ button:focus {
 /*---------------------------------------------------- */
 /*----------------------------------------------------*/
 /*============== header css =============*/
+.logo{
+  height: 40px;
+}
+
 .header_area {
   position: absolute;
   top: 0;
@@ -723,10 +736,6 @@ button:focus {
   overflow: hidden;
 }
 
-.blog_banner .bg-parallax {
-  background: url(../image/banner/banner-1.jpg) no-repeat scroll center center;
-}
-
 .blog_banner .banner_content {
   margin-bottom: 0px;
   margin-top: 106px;
@@ -832,11 +841,6 @@ button:focus {
   z-index: 1;
   background: #04091e;
   overflow: hidden;
-}
-
-.facilities_area .bg-parallax {
-  background: url("../image/facilites_bg.jpg") no-repeat scroll center 0/cover;
-  opacity: 0.15;
 }
 
 .facilities_item {
@@ -2963,6 +2967,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .primary-switch {
+  min-width: 35px;
   width: 35px;
   height: 17px;
   border-radius: 8.5px;
@@ -3484,7 +3489,7 @@ h1, h2, h3, h4, h5, h6 {
 /*============== footer-area css ===============*/
 .footer-area {
   background: #04091e;
-  padding: 142px 0px;
+  padding: 72px 0 20px 0;
 }
 
 .single-footer-widget ul li a {

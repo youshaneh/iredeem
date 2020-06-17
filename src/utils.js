@@ -15,7 +15,7 @@ export function getMileageRequirement(flight1, flight2, cabin) {
   let airport3 = flight2 && airports[flight2.arrivalAirport];
   let distance = getDistance(airport1.lat, airport1.lon, airport2.lat, airport2.lon);
   if(airport3) distance += getDistance(airport2.lat, airport2.lon, airport3.lat, airport3.lon);
-  let isCxKaOnly = (flight1.airline == 'CX' || flight1.airline == 'KA') && (!flight2 || flight2.airline == 'CX' || flight2.airline == 'KA');
+  let isCxKaOnly = (flight1.airline === 'CX' || flight1.airline === 'KA') && (!flight2 || flight2.airline === 'CX' || flight2.airline === 'KA');
   let mileageChart = mileageRequirement[isCxKaOnly? 'cx' : 'oneWorld'];
   let interval;
   for(let i of mileageChart.intervals){
@@ -25,9 +25,9 @@ export function getMileageRequirement(flight1, flight2, cabin) {
     }
   }
   if(!interval) throw new Error(`Invalid itinerary. ${flight1.airline} ${flight2?.airline} ${distance} miles`);
-  if(interval == 'long1/long2'){
-    let isFromOrToAmerica = airport1.tz.split('/')[0] == 'America' ||
-      (airport3? airport3.tz.split('/')[0] == 'America' : airport2.tz.split('/')[0] == 'America');
+  if(interval === 'long1/long2'){
+    let isFromOrToAmerica = airport1.tz.split('/')[0] === 'America' ||
+      (airport3? airport3.tz.split('/')[0] === 'America' : airport2.tz.split('/')[0] === 'America');
     interval = isFromOrToAmerica? 'long2' : 'long1';
   }
   return mileageChart[interval][cabin];
@@ -40,9 +40,9 @@ function getDistance(lat1, lon1, lat2, lon2) {
   return 2 * 3958.8 * Math.asin(Math.sqrt(a));
 }
 
-const cabins = {
-  FIR: 'F',
-  BUS: 'B',
-  PEY: 'N',
-  ECO: 'R'
-}
+// const cabins = {
+//   FIR: 'F',
+//   BUS: 'B',
+//   PEY: 'N',
+//   ECO: 'R'
+// }
