@@ -121,7 +121,7 @@ function SearchPanel(props) {
             {!props.autoRefresh &&
                 <div className="col-md-2 item">
                     <div className="book_tabel_item">
-                        <a className="theme_btn button_hover" href="/search" onClick={(e) => {
+                        <a className="theme_btn button_hover stretch" href="/search" onClick={(e) => {
                             e.preventDefault();
                             search();
                         }}>Search</a>

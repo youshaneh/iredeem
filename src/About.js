@@ -39,7 +39,7 @@ export function AboutContent(props) {
                                 for award tickets and enjoy their trips.
 
                             </p>
-                            <Link to="/search" className="button_hover theme_btn" onClick={() => {
+                            <Link to="/search" className="button_hover theme_btn stretch" onClick={() => {
                                 setTimeout(() => {
                                     window.scrollTo({
                                         top: 0,
@@ -50,7 +50,7 @@ export function AboutContent(props) {
                             }}>Search</Link>
                         </div>
                     </div>
-                    <div className="col-md-6">
+                    <div className="col-md-6 center-vertical">
                         <img className="img-fluid" src={about_bg} alt="img" />
                     </div>
                 </div>

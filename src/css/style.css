@@ -194,6 +194,12 @@ button:focus {
   padding: 5px 30px;
 }
 
+.theme_btn.stretch {
+  padding-left: 0;
+  padding-right: 0;
+  width: 100%;
+}
+
 .theme_btn:before {
   background: #f8b100;
 }
@@ -880,6 +886,11 @@ button:focus {
 
 .about_content p {
   padding: 18px 0px 30px;
+}
+
+.center-vertical{
+  display: flex;
+  align-items: center;
 }
 
 /*=========== End about_history_area css =============*/

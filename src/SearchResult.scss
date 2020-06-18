@@ -6,7 +6,7 @@
   display: flex;
 
   &.not-available{
-    opacity: 30%;
+    opacity: 0.3;
   }
   &:not(.not-available):hover{
     border:2px solid #888;

@@ -36,7 +36,7 @@ function App() {
     });
   }, []);
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/iredeem">
       <SearchOptionContext.Provider value={{ nonStopOnly, availableOnly, setNonStopOnly, setAvailableOnly }}>
         <RouteContext.Provider value={{ routes }}>
           <div>
