@@ -118,11 +118,11 @@ button:focus {
 }
 
 .subsection_gap {
-  margin: 100px 0 10px 0;
+  margin: 80px 0 10px 0;
 }
 
 .narrow_gap {
-  margin: 50px 0 10px 0;
+  margin: 40px 0 10px 0;
 }
 
 @media (max-width: 1200px) {
@@ -607,6 +607,10 @@ button:focus {
 
 .boking_table {
   margin-left: -50px;
+}
+
+.item .book_tabel_item {
+  height: 40px;
 }
 
 .book_tabel_item .form-group {

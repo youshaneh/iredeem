@@ -45,7 +45,7 @@ function SearchCalendar(props) {
     }, [departure, arrival, firstMonth, secondMonth, availabilities]);
 
     return (
-        <section className="subsection_gap">
+        <section id="searchCalendar">
             <div className="arrow-container">
                 <div className="arrow-span" onClick={() => changeMonth(-1)}>
                     <RiArrowLeftSLine className="arrow" />
@@ -98,7 +98,18 @@ function CalendarDate(props) {
         <div className={`calendar-day ${props.calendarDate ? 'active ' : ''} ${props.available ? 'available ' : ''}`}>
             {props.calendarDate && (
                 (props.departure && props.arrival && props.cabin) ?
-                    (<NavLink to={`/search/${props.departure}/${props.arrival}/${props.cabin}/${getLocalDateString(props.calendarDate)}`} activeClassName="selected">
+                    (<NavLink to={`/search/${props.departure}/${props.arrival}/${props.cabin}/${getLocalDateString(props.calendarDate)}`}
+                        activeClassName="selected"
+                        onClick={() => {
+                            let minTop = document.querySelector('#searchCalendar').offsetTop - (document.querySelector('.header_area')?.offsetHeight);
+                            if (window.pageYOffset < minTop) {
+                                window.scrollTo({
+                                    top: minTop,
+                                    left: 0,
+                                    behavior: 'smooth'
+                                });
+                            }
+                        }}>
                         {props.calendarDate.getDate()}
                     </NavLink>) :
                     (<span onClick={() => {

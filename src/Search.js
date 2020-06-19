@@ -20,7 +20,7 @@ function Search() {
                 </div>
                 <SearchPanel {...params} timestamp={new Date().getTime()} autoRefresh={true} />
             </section>
-            <section className="about_history_area subsection_gap">
+            <section className="narrow_gap">
                 <SearchCalendar {...params} />
                 <SearchOptions />
                 <SearchResult {...params} />

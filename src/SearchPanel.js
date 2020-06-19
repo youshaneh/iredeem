@@ -70,7 +70,7 @@ function SearchPanel(props) {
             <div className="col-md item">
                 {routes !== undefined || <Spinner className="spinner" animation="border" variant="primary" size="sm" />}
                 <input className={`wide form-control nice-select ${(showWarning && !isDepartureValid) ? 'invalid' : ''}`}
-                    placeholder="Where from?"
+                    placeholder={(routes !== undefined)? 'Where from?' : 'Loading...'}
                     autoComplete="off"
                     onFocus={e => {
                         setDeparture('');
@@ -91,7 +91,7 @@ function SearchPanel(props) {
             <div className="col-md item">
                 {routes !== undefined || <Spinner className="spinner" animation="border" variant="primary" size="sm" />}
                 <input className={`wide form-control nice-select ${(showWarning && !isArrivalValid) ? 'invalid' : ''}`}
-                    placeholder="Where to?"
+                    placeholder={(routes !== undefined)? 'Where to?' : 'Loading...'}
                     autoComplete="off"
                     onFocus={e => {
                         setArrival('');
