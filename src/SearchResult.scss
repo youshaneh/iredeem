@@ -1,7 +1,6 @@
 .result-item{
   border:2px solid #ccc;
   color: #777;
-  padding: 15px 0px;
   margin: 25px 5px;
   display: flex;
 
@@ -10,6 +9,10 @@
   }
   &:not(.not-available):hover{
     border:2px solid #888;
+  }
+  .container{
+    margin-top: 15px;
+    margin-bottom: 15px;
   }
   .center{
     display:flex;

@@ -22,7 +22,7 @@ function Banner() {
                         <h6>Redeem award tickets</h6>
                         <h2>Start Your Journey</h2>
                         <p>
-                            Asia Miles is Asia’s leading travel rewards program.<br/>
+                            Asia Miles is Asia’s leading travel rewards program. <br/>
                             iRedeem helps you find award seats in a faster and simpler way. 
                         </p>
                         <a href="https://www.asiamiles.com" target="_blank" rel="noopener noreferrer" className="theme_btn button_hover">Learn More about Asia Miles</a>

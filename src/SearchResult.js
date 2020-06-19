@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { getMileageRequirement } from './utils.js'
 import './SearchResult.scss';
-import CenterSpinner from './CenterSpinner.js';
+import CenterSpinner from './widget/CenterSpinner.js';
 import { SearchOptionContext, } from './Contexts.js'
 import { Collapse } from 'react-bootstrap';
 

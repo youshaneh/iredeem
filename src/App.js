@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import About from './About.js';
-import './App.css';
 import { RouteContext, SearchOptionContext } from './Contexts.js';
+import About from './About.js';
 import Footer from './Footer.js';
 import Header from './Header.js';
 import Home from './Home.js';

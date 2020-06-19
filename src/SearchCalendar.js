@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { RiArrowLeftSLine, RiArrowRightSLine } from 'react-icons/ri';
 import { NavLink } from "react-router-dom";
-import CenterSpinner from './CenterSpinner.js';
+import CenterSpinner from './widget/CenterSpinner.js';
 import './SearchCalendar.scss';
 import { getLocalDateString, weekdayLabels } from './utils';
 

@@ -40,9 +40,12 @@ function getDistance(lat1, lon1, lat2, lon2) {
   return 2 * 3958.8 * Math.asin(Math.sqrt(a));
 }
 
-// const cabins = {
-//   FIR: 'F',
-//   BUS: 'B',
-//   PEY: 'N',
-//   ECO: 'R'
-// }
+export function onLinkSelect(){
+  setTimeout(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
+    });
+  }, 0)
+}

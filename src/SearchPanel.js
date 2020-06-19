@@ -77,6 +77,7 @@ function SearchPanel(props) {
                     }}
                     list="departures" name="departure" id="departure" value={departure}
                     onChange={e => {
+                        if(departureOptions.includes(e.target.value)) e.target.blur();
                         setDeparture(e.target.value);
                     }} />
                 <datalist id="departures">
@@ -97,6 +98,7 @@ function SearchPanel(props) {
                     }}
                     list="arrivals" name="arrival" id="arrival" value={arrival}
                     onChange={e => {
+                        if(arrivalOptions.includes(e.target.value)) e.target.blur();
                         setArrival(e.target.value);
                     }} />
                 <datalist id="arrivals">

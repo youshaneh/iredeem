@@ -1,5 +1,6 @@
 import React from 'react';
-import './Footer.css';
+import { Link } from "react-router-dom";
+import { onLinkSelect } from './utils'
 
 function Footer() {
     return (
@@ -19,8 +20,8 @@ function Footer() {
                 </div>
                 <div className="border_line"></div>
                 <div className="row footer-bottom d-flex justify-content-between align-items-center">
-                    <p className="col-lg-8 col-sm-12 footer-text m-0">
-                        Copyright &copy; All rights reserved | This template is made with <i className="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank" rel="noopener noreferrer">Colorlib</a>
+                    <p className="col-12 footer-text">
+                        Copyright &copy; 2020 <Link to="/" onClick={onLinkSelect}>iRedeem</Link> | Design by <a href="https://colorlib.com" target="_blank" rel="noopener noreferrer">Colorlib</a>
                     </p>
                 </div>
             </div>
