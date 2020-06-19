@@ -51,7 +51,8 @@ function ResultItem(props) {
     const { nonStopOnly, availableOnly } = useContext(SearchOptionContext);
     return (
         <Collapse in={!(nonStopOnly && flight2) && !(availableOnly && !isAvailable)}>
-            <div className={`result-item ${isAvailable ? '' : 'not-available'}`}>
+            <div className="result-item">
+                <div className={`result-item-content ${isAvailable ? '' : 'not-available'}`}>
                 <div className="container">
                     <div className="row">
                         <div className="col-md">
@@ -84,6 +85,7 @@ function ResultItem(props) {
                             </div>
                         </div>
                     </div>
+                </div>
                 </div>
             </div>
         </Collapse>
