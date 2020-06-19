@@ -1,30 +1,29 @@
 {
   "files": {
-    "main.css": "/iredeem/static/css/main.7e8d1c4e.chunk.css",
-    "main.js": "/iredeem/static/js/main.6015cde9.chunk.js",
-    "main.js.map": "/iredeem/static/js/main.6015cde9.chunk.js.map",
+    "main.css": "/iredeem/static/css/main.a134add5.chunk.css",
+    "main.js": "/iredeem/static/js/main.a9638ec9.chunk.js",
+    "main.js.map": "/iredeem/static/js/main.a9638ec9.chunk.js.map",
     "runtime-main.js": "/iredeem/static/js/runtime-main.0d64c6a9.js",
     "runtime-main.js.map": "/iredeem/static/js/runtime-main.0d64c6a9.js.map",
     "static/css/2.829c9cb5.chunk.css": "/iredeem/static/css/2.829c9cb5.chunk.css",
-    "static/js/2.bf662ab9.chunk.js": "/iredeem/static/js/2.bf662ab9.chunk.js",
-    "static/js/2.bf662ab9.chunk.js.map": "/iredeem/static/js/2.bf662ab9.chunk.js.map",
+    "static/js/2.2715ce97.chunk.js": "/iredeem/static/js/2.2715ce97.chunk.js",
+    "static/js/2.2715ce97.chunk.js.map": "/iredeem/static/js/2.2715ce97.chunk.js.map",
     "index.html": "/iredeem/index.html",
-    "precache-manifest.caf9c77476e1f31b2f22dfc75955974f.js": "/iredeem/precache-manifest.caf9c77476e1f31b2f22dfc75955974f.js",
+    "precache-manifest.a09a2f9b05e5282c6f87747afe3203f2.js": "/iredeem/precache-manifest.a09a2f9b05e5282c6f87747afe3203f2.js",
     "service-worker.js": "/iredeem/service-worker.js",
     "static/css/2.829c9cb5.chunk.css.map": "/iredeem/static/css/2.829c9cb5.chunk.css.map",
-    "static/css/main.7e8d1c4e.chunk.css.map": "/iredeem/static/css/main.7e8d1c4e.chunk.css.map",
-    "static/js/2.bf662ab9.chunk.js.LICENSE.txt": "/iredeem/static/js/2.bf662ab9.chunk.js.LICENSE.txt",
+    "static/css/main.a134add5.chunk.css.map": "/iredeem/static/css/main.a134add5.chunk.css.map",
+    "static/js/2.2715ce97.chunk.js.LICENSE.txt": "/iredeem/static/js/2.2715ce97.chunk.js.LICENSE.txt",
     "static/media/style.css": "/iredeem/static/media/banner_bg.43b25b3c.jpg",
     "static/media/about_bg.jpg": "/iredeem/static/media/about_bg.e82a4b8a.jpg",
     "static/media/Home.scss": "/iredeem/static/media/banner-1.62686fcf.jpg",
-    "static/media/font-awesome.min.css": "/iredeem/static/media/fontawesome-webfont.e6cf7c6e.woff2",
     "static/media/logo.png": "/iredeem/static/media/logo.46b3967b.png"
   },
   "entrypoints": [
     "static/js/runtime-main.0d64c6a9.js",
     "static/css/2.829c9cb5.chunk.css",
-    "static/js/2.bf662ab9.chunk.js",
-    "static/css/main.7e8d1c4e.chunk.css",
-    "static/js/main.6015cde9.chunk.js"
+    "static/js/2.2715ce97.chunk.js",
+    "static/css/main.a134add5.chunk.css",
+    "static/js/main.a9638ec9.chunk.js"
   ]
 }
