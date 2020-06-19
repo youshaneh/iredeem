@@ -64,8 +64,10 @@
     &.available{
       color:#888;
     }
-    &.active:hover{
-      border:1px solid #000;
+    @media (pointer: fine){
+      &.active:hover{
+        border:1px solid #000;
+      }
     }
     a, span{
       color: inherit;
