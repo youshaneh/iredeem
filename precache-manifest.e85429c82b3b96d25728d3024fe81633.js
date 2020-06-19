@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "94914524b3afd78ef8488b1f0c6b70cd",
+    "revision": "b4456aa20bc25d920bee6993ac405cdb",
     "url": "/iredeem/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/iredeem/static/css/2.829c9cb5.chunk.css"
   },
   {
-    "revision": "c8ab394512f392dfd3fe",
+    "revision": "366c72bae84f6b8dd089",
     "url": "/iredeem/static/css/main.9bb5ebec.chunk.css"
   },
   {
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/iredeem/static/js/2.2715ce97.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "c8ab394512f392dfd3fe",
-    "url": "/iredeem/static/js/main.47302b8b.chunk.js"
+    "revision": "366c72bae84f6b8dd089",
+    "url": "/iredeem/static/js/main.d0fc50fc.chunk.js"
   },
   {
     "revision": "be8b3b20ad5184c5e624",
