@@ -13,3 +13,41 @@
   right:28px;
   margin:auto;
 }
+
+.options{
+  z-index: 1;
+  width: 100%;
+  margin-top: 40px;
+  padding-right: 30px;
+  position: absolute;
+  &.hide{
+    display: none;
+  }
+  .border{
+    background: #ffffff;
+    border: 1px solid #000;
+    .airport-option{
+      padding: 5px 10px;
+      border-bottom: 1px solid #eeeeee;
+      &:not(.invalid):hover{
+        background-color: #00000033;
+      }
+      .airport{
+        color: #000;
+        font-weight: 500;
+      }
+      .details{
+        font-size: 0.8em;
+        color: #555;
+      }
+      &.invalid{
+        .airport{
+          color: #ccc;
+        }
+        .details{
+          color: #ddd;
+        }
+      }
+    }
+  }
+}
