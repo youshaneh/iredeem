@@ -26,7 +26,7 @@ function SearchCalendar(props) {
     useEffect(() => {
         function update(month) {
             if (availabilities[month]) return;
-            let firstDay = new Date(month);
+            let firstDay = (new Date(month) < new Date()) ? new Date() : new Date(month);
             let firstDayNextMonth = new Date(firstDay.getFullYear(), firstDay.getMonth() + 1, 1);
             fetch(`https://iredeem-server.herokuapp.com/availability?departure=${departure}&arrival=${arrival}&since=${getLocalDateString(firstDay)}&till=${getLocalDateString(firstDayNextMonth)}`, { method: 'get' })
                 .then(function (response) {
@@ -94,25 +94,28 @@ function CalendarMonth(props) {
 }
 
 function CalendarDate(props) {
+    const past = props.calendarDate && props.calendarDate < new Date();
     return (
-        <div className={`calendar-day ${props.calendarDate ? 'active ' : ''} ${props.available ? 'available ' : ''}`}>
+        <div className={`calendar-day ${past ? 'past' : ''} ${props.calendarDate ? 'active ' : ''} ${props.available ? 'available ' : ''}`}>
             {props.calendarDate && (
                 (props.departure && props.arrival && props.cabin) ?
-                    (<NavLink to={`/search/${props.departure}/${props.arrival}/${props.cabin}/${getLocalDateString(props.calendarDate)}`}
-                        activeClassName="selected"
-                        onClick={() => {
-                            let minTop = document.querySelector('#searchCalendar').offsetTop - (document.querySelector('.header_area')?.offsetHeight);
-                            if (window.pageYOffset < minTop) {
-                                window.scrollTo({
-                                    top: minTop,
-                                    left: 0,
-                                    behavior: 'smooth'
-                                });
-                            }
-                        }}>
-                        {props.calendarDate.getDate()}
-                    </NavLink>) :
-                    (<span onClick={() => {
+                    past ?
+                        <a>{props.calendarDate.getDate()}</a> :
+                        <NavLink to={`/search/${props.departure}/${props.arrival}/${props.cabin}/${getLocalDateString(props.calendarDate)}`}
+                            activeClassName="selected"
+                            onClick={() => {
+                                let minTop = document.querySelector('#searchCalendar').offsetTop - (document.querySelector('.header_area')?.offsetHeight);
+                                if (window.pageYOffset < minTop) {
+                                    window.scrollTo({
+                                        top: minTop,
+                                        left: 0,
+                                        behavior: 'smooth'
+                                    });
+                                }
+                            }}>
+                            {props.calendarDate.getDate()}
+                        </NavLink> :
+                    <span onClick={() => {
                         window.scrollTo({
                             top: document.querySelector('.hotel_booking_area').offsetTop - (document.querySelector('.header_area')?.offsetHeight),
                             left: 0,
@@ -120,7 +123,7 @@ function CalendarDate(props) {
                         });
                     }}>
                         {props.calendarDate.getDate()}
-                    </span>))
+                    </span>)
             }
         </div>
     );

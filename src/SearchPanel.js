@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState, useContext, useRef } from 'react';
 import Spinner from 'react-bootstrap/Spinner';
 import { useHistory } from "react-router-dom";
 import airports from './airports.json';
@@ -62,16 +62,27 @@ function SearchPanel(props) {
         setArrival(props.arrival || '');
         setCabin(props.cabin || 'B');
     }
+
+    const refs = [useRef(null), useRef(null), useRef(null)];
+
     return (
-        <SearchPannelFrame>
-            <AutoCompleteInput value={departure} routes={routes} warn={showWarning && !isDepartureValid}
+        <SearchPannelFrame onEnter={() => {
+            for (let i = 0; i < refs.length - 1; i++) {
+                if (document.activeElement == refs[i].current){
+                    refs[i + 1].current.focus();
+                    break;
+                }
+            }
+        }}>
+            <AutoCompleteInput ref={refs[0]} value={departure} routes={routes} warn={showWarning && !isDepartureValid}
                 updateFunction={setDeparture} validOptions={departureOptions} allOptions={allOptions[0]}
                 placeholder="Where from?" invalidMsg=" - Not applicable for this arrival" />
-            <AutoCompleteInput value={arrival} routes={routes} warn={showWarning && !isArrivalValid}
+            <AutoCompleteInput ref={refs[1]} value={arrival} routes={routes} warn={showWarning && !isArrivalValid}
                 updateFunction={setArrival} validOptions={arrivalOptions} allOptions={allOptions[1]}
                 placeholder="Where to?" invalidMsg=" - Not applicable for this departure" />
             <div className="col-md item">
-                <select className="wide nice-select" value={cabin}
+                <select className="wide nice-select" value={cabin} id="cabin"
+                    ref={refs[2]}
                     onChange={e => {
                         setCabin(e.target.value);
                     }}>
@@ -95,7 +106,7 @@ function SearchPanel(props) {
     )
 }
 
-function AutoCompleteInput(props) {
+const AutoCompleteInput = React.forwardRef((props, ref) => {
     const [focused, setFocused] = useState(false);
     const allOptions = props.allOptions ? props.allOptions.filter(option => option.indexOf(props.value.toUpperCase()) >= 0) : [];
     const validOptions = props.validOptions ? props.validOptions.filter(option => option.indexOf(props.value.toUpperCase()) >= 0) : [];
@@ -105,15 +116,19 @@ function AutoCompleteInput(props) {
             {props.routes !== undefined || <Spinner className="spinner" animation="border" variant="primary" size="sm" />}
             <input className={`wide form-control nice-select ${props.warn ? 'invalid' : ''}`}
                 value={props.value}
+                ref={ref}
                 placeholder={(props.routes !== undefined) ? props.placeholder : 'Loading...'}
                 onFocus={e => {
                     e.target.select();
                     setFocused(true);
                 }}
                 onBlur={() => {
-                    if (validOptions.length === 1 && props.value.length > 2) props.updateFunction(validOptions[0]);
+                    if (validOptions.length === 1 && props.value.length > 0) props.updateFunction(validOptions[0]);
                     setFocused(false)
                 }}
+                // onKeyUp={e =>
+                //     e.keyCode === 13 && e.target.blur()
+                // }
                 onChange={e => {
                     props.updateFunction(e.target.value);
                     if (props.validOptions.includes(e.target.value)) e.target.blur();
@@ -137,21 +152,24 @@ function AutoCompleteInput(props) {
             </div>
         </div>
     );
-}
+});
 
 function SearchPannelFrame(props) {
     return (
         <div className="hotel_booking_area position">
             <div className="container">
                 <div className="hotel_booking_table">
-                    <div className="book_tabel_item">
+                    <div className="book_tabel_item"
+                        onKeyUp={e => {
+                            (e.keyCode === 13) && props.onEnter()
+                        }}>
                         <div className="row">
                             {props.children}
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
     );
 }
 

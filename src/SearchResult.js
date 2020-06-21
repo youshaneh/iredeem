@@ -9,9 +9,13 @@ function SearchResult(props) {
     const [itineraries, setItineraries] = useState(props.date ? undefined : []);
     useEffect(() => {
         if (!(props.departure && props.arrival && props.date)) return;
-        setItineraries(undefined);
         let selectedDay = new Date(props.date);
+        if (selectedDay < new Date()) {
+            setItineraries([]);
+            return;
+        }
         let nextDay = new Date(selectedDay.getTime() + 24 * 60 * 60 * 1000);
+        setItineraries(undefined);
         fetch(`https://iredeem-server.herokuapp.com/itinerary?departure=${props.departure}&arrival=${props.arrival}&since=${selectedDay.toISOString().split('T')[0]}&till=${nextDay.toISOString().split('T')[0]}`, { method: 'get' })
             .then(function (response) {
                 if (!response.ok) throw new Error(response.statusText)
@@ -53,39 +57,39 @@ function ResultItem(props) {
         <Collapse in={!(nonStopOnly && flight2) && !(availableOnly && !isAvailable)}>
             <div className="result-item">
                 <div className={`result-item-content ${isAvailable ? '' : 'not-available'}`}>
-                <div className="container">
-                    <div className="row">
-                        <div className="col-md">
-                            <div className="flight-number-row">
-                                <FlightNumber flight={flight1} />
-                                {flight2 && <span className="arrow">→</span>}
-                                {flight2 && <FlightNumber flight={flight2} />}
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-md">
+                                <div className="flight-number-row">
+                                    <FlightNumber flight={flight1} />
+                                    {flight2 && <span className="arrow">→</span>}
+                                    {flight2 && <FlightNumber flight={flight2} />}
+                                </div>
+                                <div className="flight-info-row">
+                                    <Terminal time={flight1.departureTime} airport={flight1.departureAirport} />
+                                    <span className="flight" />
+                                    {flight2 &&
+                                        <span className="stopover">
+                                            <div>
+                                                <span className="dot"></span>
+                                            </div>
+                                            <div className="airport">
+                                                {flight2.departureAirport}
+                                            </div>
+                                        </span>}
+                                    {flight2 && <span className="flight" />}
+                                    <Terminal time={flight2?.arrivalTime || flight1?.arrivalTime} airport={flight2?.arrivalAirport || flight1?.arrivalAirport} />
+                                </div>
                             </div>
-                            <div className="flight-info-row">
-                                <Terminal time={flight1.departureTime} airport={flight1.departureAirport} />
-                                <span className="flight" />
-                                {flight2 &&
-                                    <span className="stopover">
-                                        <div>
-                                            <span className="dot"></span>
-                                        </div>
-                                        <div className="airport">
-                                            {flight2.departureAirport}
-                                        </div>
-                                    </span>}
-                                {flight2 && <span className="flight" />}
-                                <Terminal time={flight2?.arrivalTime || flight1?.arrivalTime} airport={flight2?.arrivalAirport || flight1?.arrivalAirport} />
-                            </div>
-                        </div>
-                        <div className="col-md-2 center">
-                            <div className="d-md-none padding"></div>
-                            <div className="mileage-requirement">
-                                <span className="mileage">{getMileageRequirement(flight1, flight2, props.cabin)}</span>
-                                <span className="unit">miles</span>
+                            <div className="col-md-2 center">
+                                <div className="d-md-none padding"></div>
+                                <div className="mileage-requirement">
+                                    <span className="mileage">{getMileageRequirement(flight1, flight2, props.cabin)}</span>
+                                    <span className="unit">miles</span>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
                 </div>
             </div>
         </Collapse>
