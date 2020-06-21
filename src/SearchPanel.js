@@ -106,8 +106,8 @@ function AutoCompleteInput(props) {
             <input className={`wide form-control nice-select ${props.warn ? 'invalid' : ''}`}
                 value={props.value}
                 placeholder={(props.routes !== undefined) ? props.placeholder : 'Loading...'}
-                onFocus={() => {
-                    props.updateFunction('');
+                onFocus={e => {
+                    e.target.select();
                     setFocused(true);
                 }}
                 onBlur={() => {

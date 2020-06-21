@@ -9,7 +9,7 @@ import Search from './Search.js';
 
 function App() {
   const [nonStopOnly, setNonStopOnly] = useState(false);
-  const [availableOnly, setAvailableOnly] = useState(false);
+  const [availableOnly, setAvailableOnly] = useState(true);
   const [routes, setRoutes] = useState();
   useEffect(() => {
     fetch(`https://iredeem-server.herokuapp.com/routes`, { method: 'get' })
