@@ -100,7 +100,7 @@ function CalendarDate(props) {
             {props.calendarDate && (
                 (props.departure && props.arrival && props.cabin) ?
                     past ?
-                        <a>{props.calendarDate.getDate()}</a> :
+                        <span>{props.calendarDate.getDate()}</span> :
                         <NavLink to={`/search/${props.departure}/${props.arrival}/${props.cabin}/${getLocalDateString(props.calendarDate)}`}
                             activeClassName="selected"
                             onClick={() => {

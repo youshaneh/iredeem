@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import { useParams } from "react-router-dom";
 import SearchCalendar from './SearchCalendar';
 import SearchOptions from './SearchOptions';
@@ -6,7 +6,18 @@ import SearchPanel from './SearchPanel';
 import SearchResult from "./SearchResult";
 
 function Search() {
-    let params = useParams();
+    const params = useParams();
+    useEffect(() => {
+        if (params.departure && params.arrival && params.cabin && !params.date) {
+            let top = document.querySelector('#searchCalendar').offsetTop - (document.querySelector('.header_area')?.offsetHeight);
+            window.scrollTo({
+                top,
+                left: 0,
+                behavior: 'smooth'
+            });
+        }
+        // eslint-disable-next-line
+    }, []);
     return (
         <Fragment>
             <section className="banner_area">

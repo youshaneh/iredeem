@@ -68,7 +68,7 @@ function SearchPanel(props) {
     return (
         <SearchPannelFrame onEnter={() => {
             for (let i = 0; i < refs.length - 1; i++) {
-                if (document.activeElement == refs[i].current){
+                if (document.activeElement === refs[i].current){
                     refs[i + 1].current.focus();
                     break;
                 }
@@ -126,9 +126,6 @@ const AutoCompleteInput = React.forwardRef((props, ref) => {
                     if (validOptions.length === 1 && props.value.length > 0) props.updateFunction(validOptions[0]);
                     setFocused(false)
                 }}
-                // onKeyUp={e =>
-                //     e.keyCode === 13 && e.target.blur()
-                // }
                 onChange={e => {
                     props.updateFunction(e.target.value);
                     if (props.validOptions.includes(e.target.value)) e.target.blur();

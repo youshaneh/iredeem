@@ -3664,8 +3664,11 @@ h1, h2, h3, h4, h5, h6 {
   transition: all 0.2s ease-in-out;
   white-space: nowrap;
   width: auto; }
-  .nice-select:hover {
-    border-color: #dbdbdb; }
+  @media (pointer: fine) {
+    .nice-select:hover {
+      border-color: #dbdbdb; 
+    }
+  }
   .nice-select:active, .nice-select.open, .nice-select:focus {
     border-color: #999; }
   .nice-select:after {
