@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/iredeem/static/css/main.5d3db842.chunk.css",
-    "main.js": "/iredeem/static/js/main.69049be0.chunk.js",
-    "main.js.map": "/iredeem/static/js/main.69049be0.chunk.js.map",
+    "main.js": "/iredeem/static/js/main.24340647.chunk.js",
+    "main.js.map": "/iredeem/static/js/main.24340647.chunk.js.map",
     "runtime-main.js": "/iredeem/static/js/runtime-main.0d64c6a9.js",
     "runtime-main.js.map": "/iredeem/static/js/runtime-main.0d64c6a9.js.map",
     "static/css/2.829c9cb5.chunk.css": "/iredeem/static/css/2.829c9cb5.chunk.css",
     "static/js/2.c737ee32.chunk.js": "/iredeem/static/js/2.c737ee32.chunk.js",
     "static/js/2.c737ee32.chunk.js.map": "/iredeem/static/js/2.c737ee32.chunk.js.map",
     "index.html": "/iredeem/index.html",
-    "precache-manifest.ad99f41e6f8b8e24a0bcf8d07ecc397e.js": "/iredeem/precache-manifest.ad99f41e6f8b8e24a0bcf8d07ecc397e.js",
+    "precache-manifest.7d280a61aafa9cef3b16e2e367b7b6f7.js": "/iredeem/precache-manifest.7d280a61aafa9cef3b16e2e367b7b6f7.js",
     "service-worker.js": "/iredeem/service-worker.js",
     "static/css/2.829c9cb5.chunk.css.map": "/iredeem/static/css/2.829c9cb5.chunk.css.map",
     "static/css/main.5d3db842.chunk.css.map": "/iredeem/static/css/main.5d3db842.chunk.css.map",
@@ -24,6 +24,6 @@
     "static/css/2.829c9cb5.chunk.css",
     "static/js/2.c737ee32.chunk.js",
     "static/css/main.5d3db842.chunk.css",
-    "static/js/main.69049be0.chunk.js"
+    "static/js/main.24340647.chunk.js"
   ]
 }
