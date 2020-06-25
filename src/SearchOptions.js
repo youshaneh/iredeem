@@ -21,7 +21,7 @@ function SearchOptions(props) {
                     </div>
                     <div className="col-6 col-md-4 col-lg-3">
                         <div className="option" >
-                            <span>No Stops Only</span>
+                            <span>Nonstop Only</span>
                             <div className="primary-switch">
                                 <input type="checkbox" id="non-stop-only"
                                     checked={nonStopOnly}

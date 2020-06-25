@@ -19,7 +19,7 @@ function Banner() {
                 <div className="overlay bg-parallax" data-stellar-ratio="0.9" data-stellar-vertical-offset="0" data-background=""></div>
                 <div className="container">
                     <div className="banner_content text-center">
-                        <h6>Redeem award tickets</h6>
+                        <h6>Redeem miles</h6>
                         <h2>Start Your Journey</h2>
                         <p>
                             Asia Miles is Asia’s leading travel rewards program. <br/>
