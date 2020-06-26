@@ -76,10 +76,10 @@ function SearchPanel(props) {
         }}>
             <AutoCompleteInput ref={refs[0]} value={departure} routes={routes} warn={showWarning && !isDepartureValid}
                 updateFunction={setDeparture} validOptions={departureOptions} allOptions={allOptions[0]}
-                placeholder="Where from?" invalidMsg=" - Not applicable for this arrival" />
+                placeholder="Where from?" invalidMsg=" - Not applicable" />
             <AutoCompleteInput ref={refs[1]} value={arrival} routes={routes} warn={showWarning && !isArrivalValid}
                 updateFunction={setArrival} validOptions={arrivalOptions} allOptions={allOptions[1]}
-                placeholder="Where to?" invalidMsg=" - Not applicable for this departure" />
+                placeholder="Where to?" invalidMsg=" - Not applicable" />
             <div className="col-md item">
                 <select className="wide nice-select" value={cabin} id="cabin"
                     ref={refs[2]}
