@@ -33,7 +33,7 @@ function SearchResult(props) {
     if (props.date) {
         content = itineraries ?
             itineraries.map(itinerary =>
-                <ResultItem key={itinerary.itineraryId} itinerary={itinerary} cabin={props.cabin} />) :
+                <ResultItem {...props} key={itinerary.itineraryId} itinerary={itinerary} cabin={props.cabin} />) :
             <div className="loading"><CenterSpinner /></div>
     }
     return (
@@ -52,9 +52,8 @@ function SearchResult(props) {
 function ResultItem(props) {
     let { flight1, flight2 } = props.itinerary;
     let isAvailable = !isNaN(flight1[`status${props.cabin}`]) && (!flight2 || !isNaN(flight2[`status${props.cabin}`]));
-    const { nonStopOnly, availableOnly } = useContext(SearchOptionContext);
     return (
-        <Collapse in={!(nonStopOnly && flight2) && !(availableOnly && !isAvailable)}>
+        <Collapse in={!(props.nonstopOnly && flight2) && !(props.availableOnly && !isAvailable)}>
             <div className="result-item">
                 <div className={`result-item-content ${isAvailable ? '' : 'not-available'}`}>
                     <div className="container">

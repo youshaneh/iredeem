@@ -8,8 +8,6 @@ import Home from './Home.js';
 import Search from './Search.js';
 
 function App() {
-  const [nonStopOnly, setNonStopOnly] = useState(false);
-  const [availableOnly, setAvailableOnly] = useState(true);
   const [routes, setRoutes] = useState();
   useEffect(() => {
     fetch(`https://iredeem-server.herokuapp.com/routes`, { method: 'get' })
@@ -36,25 +34,23 @@ function App() {
   }, []);
   return (
     <BrowserRouter basename="/iredeem">
-      <SearchOptionContext.Provider value={{ nonStopOnly, availableOnly, setNonStopOnly, setAvailableOnly }}>
-        <RouteContext.Provider value={{ routes }}>
-          <div>
-            <Header />
-            <Switch>
-              <Route path={["/search/:departure/:arrival/:cabin/:date", "/search/:departure/:arrival/:cabin", "/search"]}>
-                <Search />
-              </Route>
-              <Route path="/about">
-                <About />
-              </Route>
-              <Route path="/">
-                <Home />
-              </Route>
-            </Switch>
-            <Footer />
-          </div>
-        </RouteContext.Provider>
-      </SearchOptionContext.Provider>
+      <RouteContext.Provider value={{ routes }}>
+        <div>
+          <Header />
+          <Switch>
+            <Route path={["/search/:departure/:arrival/:cabin/:date", "/search/:departure/:arrival/:cabin", "/search"]}>
+              <Search />
+            </Route>
+            <Route path="/about">
+              <About />
+            </Route>
+            <Route path="/">
+              <Home />
+            </Route>
+          </Switch>
+          <Footer />
+        </div>
+      </RouteContext.Provider>
     </BrowserRouter>
   );
 }

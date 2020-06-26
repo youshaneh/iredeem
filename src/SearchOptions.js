@@ -1,9 +1,7 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import './SearchOptions.scss';
-import { SearchOptionContext } from './Contexts.js'
 
 function SearchOptions(props) {
-    const { nonStopOnly, setNonStopOnly, availableOnly, setAvailableOnly } = useContext(SearchOptionContext);
     return (
         <section className="narrow_gap">
             <div className="container">
@@ -13,8 +11,8 @@ function SearchOptions(props) {
                             <span>Available Only</span>
                             <div className="primary-switch">
                                 <input type="checkbox" id="available-only"
-                                    checked={availableOnly}
-                                    onChange={(e) => setAvailableOnly(e.target.checked)} />
+                                    checked={props.availableOnly}
+                                    onChange={(e) => props.onAvailableOnlyChange(e.target.checked)} />
                                 <label htmlFor="available-only"></label>
                             </div>
                         </div>
@@ -24,8 +22,8 @@ function SearchOptions(props) {
                             <span>Nonstop Only</span>
                             <div className="primary-switch">
                                 <input type="checkbox" id="non-stop-only"
-                                    checked={nonStopOnly}
-                                    onChange={(e) => setNonStopOnly(e.target.checked)} />
+                                    checked={props.nonstopOnly}
+                                    onChange={(e) => props.onNonstopOnlyChange(e.target.checked)} />
                                 <label htmlFor="non-stop-only"></label>
                             </div>
                         </div>
