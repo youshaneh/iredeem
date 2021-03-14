@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom";
 import CenterSpinner from './widget/CenterSpinner.js';
 import './SearchCalendar.scss';
 import { getLocalDateString, weekdayLabels } from './utils';
+import { environment } from './environment.js'
 
 function SearchCalendar(props) {
     const [dateTimeInFirstMonth, setDateTimeInFirstMonth] = useState(new Date().getTime());
@@ -28,7 +29,7 @@ function SearchCalendar(props) {
             if (availabilities[month]) return;
             let firstDay = (new Date(month) < new Date()) ? new Date() : new Date(month);
             let firstDayNextMonth = new Date(firstDay.getFullYear(), firstDay.getMonth() + 1, 1);
-            fetch(`https://iredeem-server.herokuapp.com/availability?departure=${departure}&arrival=${arrival}&since=${getLocalDateString(firstDay)}&till=${getLocalDateString(firstDayNextMonth)}`, { method: 'get' })
+            fetch(`${environment.baseUrl}/availability?departure=${departure}&arrival=${arrival}&since=${getLocalDateString(firstDay)}&till=${getLocalDateString(firstDayNextMonth)}`, { method: 'get' })
                 .then(function (response) {
                     if (!response.ok) throw new Error(response.statusText);
                     return response.json();

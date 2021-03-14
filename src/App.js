@@ -6,11 +6,12 @@ import Footer from './Footer.js';
 import Header from './Header.js';
 import Home from './Home.js';
 import Search from './Search.js';
+import { environment } from './environment.js'
 
 function App() {
   const [routes, setRoutes] = useState();
   useEffect(() => {
-    fetch(`https://iredeem-server.herokuapp.com/routes`, { method: 'get' })
+    fetch(`${environment.baseUrl}/routes`, { method: 'get' })
       .then(function (response) {
         if (!response.ok) throw new Error(response.statusText)
         return response.json();
@@ -33,7 +34,7 @@ function App() {
     });
   }, []);
   return (
-    <BrowserRouter basename="/iredeem">
+    <BrowserRouter basename="/">
       <RouteContext.Provider value={{ routes }}>
         <div>
           <Header />

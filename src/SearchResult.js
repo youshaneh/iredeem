@@ -4,6 +4,7 @@ import './SearchResult.scss';
 import CenterSpinner from './widget/CenterSpinner.js';
 import { SearchOptionContext, } from './Contexts.js'
 import { Collapse } from 'react-bootstrap';
+import { environment } from './environment.js'
 
 function SearchResult(props) {
     const [itineraries, setItineraries] = useState(props.date ? undefined : []);
@@ -16,7 +17,7 @@ function SearchResult(props) {
         }
         let nextDay = new Date(selectedDay.getTime() + 24 * 60 * 60 * 1000);
         setItineraries(undefined);
-        fetch(`https://iredeem-server.herokuapp.com/itinerary?departure=${props.departure}&arrival=${props.arrival}&since=${selectedDay.toISOString().split('T')[0]}&till=${nextDay.toISOString().split('T')[0]}`, { method: 'get' })
+        fetch(`${environment.baseUrl}/itinerary?departure=${props.departure}&arrival=${props.arrival}&since=${selectedDay.toISOString().split('T')[0]}&till=${nextDay.toISOString().split('T')[0]}`, { method: 'get' })
             .then(function (response) {
                 if (!response.ok) throw new Error(response.statusText)
                 return response.json();
