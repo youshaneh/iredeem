@@ -1,3 +1,3 @@
 export const environment = {
-  baseUrl: 'http://iredeem.tk/api'
+  baseUrl: 'https://iredeem.tk/api'
 };
