@@ -1,9 +1,10 @@
 import React, { Fragment, useEffect } from 'react';
 import { useParams } from "react-router-dom";
-import SearchCalendar from './SearchCalendar';
-import SearchOptionsContainer from './SearchOptionsContainer';
-import SearchPanel from './SearchPanel';
-import SearchResultContainer from "./SearchResultContainer";
+import SearchCalendar from '../components/search/SearchCalendar';
+import SearchOptions from '../components/search/SearchOptions';
+import SearchPanel from '../components/common/SearchPanel';
+import SearchResult from "../components/search/SearchResult";
+import './Search.scss';
 
 function Search() {
     const params = useParams();
@@ -33,8 +34,8 @@ function Search() {
             </section>
             <section className="narrow_gap">
                 <SearchCalendar {...params} />
-                <SearchOptionsContainer />
-                <SearchResultContainer {...params} />
+                <SearchOptions />
+                <SearchResult {...params} />
             </section>
         </Fragment>
     )

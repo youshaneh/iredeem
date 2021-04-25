@@ -1,0 +1,2 @@
+export const AVAILABLE_ONLY = "AVAILABLE_ONLY";
+export const NONSTOP_ONLY = "NONSTOP_ONLY";

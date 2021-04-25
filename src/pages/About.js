@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import { Link } from "react-router-dom";
-import about_bg from './image/about_bg.jpg';
+import about_bg from '../images/about_bg.jpg';
+import './About.scss';
 
 function About() {
     return (
@@ -23,9 +24,9 @@ export function AboutContent(props) {
         <section className="about_history_area section_gap">
             <div className="container">
                 <div className="row">
-                    <div className="col-md-6 d_flex align-items-center">
+                    <div className="col-md-6 align-items-center">
                         <div className="about_content ">
-                            <h2 className="title title_color">About<br />Our Mission &amp; Vision</h2>
+                            <h2 className="title">About<br />Our Mission &amp; Vision</h2>
                             <p>
                                 This website is designed by a fan of Cathay Pacific who has deposited tens of
                                 thousands of mileage into his Asia Miles Account only to find it difficult to

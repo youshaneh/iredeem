@@ -1,0 +1,43 @@
+.logo{
+  padding: 3px;
+  height: 40px;
+}
+
+.header_area {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 20;
+  transition: 300ms ease;
+}
+
+.navbar {
+  background: #fff;
+  padding: 0px 25px;
+}
+
+.navbar .menu_nav .nav-item .nav-link {
+  font: 500 12px/80px "Poppins", sans-serif;
+  color: #222222;
+  text-transform: uppercase;
+  padding: 0px;
+}
+
+.navbar .menu_nav .nav-item:hover .nav-link, .navbar .menu_nav .nav-item .active.nav-link {
+  color: #52c5fd;
+}
+
+.navbar .menu_nav .nav-item + li {
+  margin-left: 30px;
+}
+
+.navbar_fixed {
+  background: #fff;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+}
+
+.navbar.navbar-expand-lg {
+  background: #fff;
+  padding: 0 25px;
+}

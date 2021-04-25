@@ -52,3 +52,17 @@
     }
   }
 }
+
+.item .book_tabel_item {
+  height: 40px;
+}
+
+.hotel_booking_table .book_tabel_item .form-control {
+  background: transparent;
+  border-radius: 0px;
+  font-size: 13px;
+  line-height: 38px;
+  padding: 0px 0px 0px 20px;
+  color: #777777;
+  z-index: 0;
+}

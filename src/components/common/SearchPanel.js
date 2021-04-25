@@ -1,9 +1,9 @@
 import React, { useEffect, useState, useContext, useRef } from 'react';
 import Spinner from 'react-bootstrap/Spinner';
 import { useHistory } from "react-router-dom";
-import airports from './airports.json';
+import airports from '../../airports.json';
 import './SearchPanel.scss';
-import { RouteContext } from './Contexts.js'
+import { RouteContext } from '../../context/Contexts.js'
 
 function SearchPanel(props) {
     const { routes } = useContext(RouteContext);

@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import Navbar from 'react-bootstrap/Navbar';
 import { Link, NavLink } from "react-router-dom";
-import logo from './image/logo.png';
-import{onLinkSelect} from './utils'
+import logo from '../../images/logo.png';
+import { onLinkSelect } from '../../utils/utils'
+import './Header.scss';
 
 export default function Header(props) {
   const [expanded, setExpanded] = useState(false);

@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { AboutContent } from './About';
 import './Home.scss';
-import SearchPanel from './SearchPanel';
+import SearchPanel from '../components/common/SearchPanel';
 
 function Home() {
     return (
@@ -15,7 +15,7 @@ function Home() {
 function Banner() {
     return (
         <section className="banner_area">
-            <div className="booking_table d_flex align-items-center">
+            <div className="booking_table align-items-center">
                 <div className="overlay bg-parallax" data-stellar-ratio="0.9" data-stellar-vertical-offset="0" data-background=""></div>
                 <div className="container">
                     <div className="banner_content text-center">

@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import { RouteContext, SearchOptionContext } from './Contexts.js';
-import About from './About.js';
-import Footer from './Footer.js';
-import Header from './Header.js';
-import Home from './Home.js';
-import Search from './Search.js';
-import { environment } from './environment.js'
+import { RouteContext } from '../context/Contexts.js';
+import About from '../pages/About.js';
+import Footer from './common/Footer.js';
+import Header from './common/Header.js';
+import Home from '../pages/Home.js';
+import Search from '../pages/Search.js';
+import { environment } from '../environment.js'
 
 function App() {
   const [routes, setRoutes] = useState();
@@ -25,7 +25,7 @@ function App() {
 
     window.addEventListener('scroll', function () {
       let headerArea = document.querySelector('.header_area');
-      if (window.scrollY >= headerArea.scrollHeight) {
+      if (window.scrollY >= headerArea.scrollHeight / 2) {
         headerArea.classList.add("navbar_fixed");
       }
       else {

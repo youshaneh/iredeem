@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { RiArrowLeftSLine, RiArrowRightSLine } from 'react-icons/ri';
 import { NavLink } from "react-router-dom";
-import CenterSpinner from './widget/CenterSpinner.js';
+import CenterSpinner from '../common/CenterSpinner.js';
 import './SearchCalendar.scss';
-import { getLocalDateString, weekdayLabels } from './utils';
-import { environment } from './environment.js'
+import { getLocalDateString, weekdayLabels } from '../../utils/utils';
+import { environment } from '../../environment.js'
 
 function SearchCalendar(props) {
     const [dateTimeInFirstMonth, setDateTimeInFirstMonth] = useState(new Date().getTime());
@@ -29,7 +29,7 @@ function SearchCalendar(props) {
             if (availabilities[month]) return;
             let firstDay = (new Date(month) < new Date()) ? new Date() : new Date(month);
             let firstDayNextMonth = new Date(firstDay.getFullYear(), firstDay.getMonth() + 1, 1);
-            fetch(`${environment.baseUrl}/availability?departure=${departure}&arrival=${arrival}&since=${getLocalDateString(firstDay)}&till=${getLocalDateString(firstDayNextMonth)}`, { method: 'get' })
+            fetch(`${environment.baseUrl}/availability?departure=${departure}&arrival=${arrival}&since=${getLocalDateString(firstDay)}&till=${getLocalDateString(firstDayNextMonth)}&includeWaitingList=false`, { method: 'get' })
                 .then(function (response) {
                     if (!response.ok) throw new Error(response.statusText);
                     return response.json();
@@ -97,7 +97,7 @@ function CalendarMonth(props) {
 function CalendarDate(props) {
     const past = props.calendarDate && props.calendarDate < new Date();
     return (
-        <div className={`calendar-day ${past ? 'past' : ''} ${props.calendarDate ? 'active ' : ''} ${props.available ? 'available ' : ''}`}>
+        <div className={`calendar-day ${past ? 'past' : ''} ${props.calendarDate ? 'active ' : ''} ${(props.available === 'Y' || props.available === 'E') ? 'available ' : ''}`}>
             {props.calendarDate && (
                 (props.departure && props.arrival && props.cabin) ?
                     past ?

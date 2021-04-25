@@ -1,3 +1,3 @@
 export const environment = {
-  baseUrl: 'https://iredeem.tk/api'
+  baseUrl: 'http://localhost:8080'
 };

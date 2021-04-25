@@ -1,10 +1,10 @@
-import React, { useEffect, useState, useContext } from 'react';
-import { getMileageRequirement } from './utils.js'
+import React, { useEffect, useState } from 'react';
+import { getMileageRequirement } from '../../utils/utils.js'
 import './SearchResult.scss';
-import CenterSpinner from './widget/CenterSpinner.js';
-import { SearchOptionContext, } from './Contexts.js'
+import CenterSpinner from '../common/CenterSpinner.js';
 import { Collapse } from 'react-bootstrap';
-import { environment } from './environment.js'
+import { environment } from '../../environment.js'
+import { connect } from 'react-redux'
 
 function SearchResult(props) {
     const [itineraries, setItineraries] = useState(props.date ? undefined : []);
@@ -17,7 +17,7 @@ function SearchResult(props) {
         }
         let nextDay = new Date(selectedDay.getTime() + 24 * 60 * 60 * 1000);
         setItineraries(undefined);
-        fetch(`${environment.baseUrl}/itinerary?departure=${props.departure}&arrival=${props.arrival}&since=${selectedDay.toISOString().split('T')[0]}&till=${nextDay.toISOString().split('T')[0]}`, { method: 'get' })
+        fetch(`${environment.baseUrl}/itineraries?departure=${props.departure}&arrival=${props.arrival}&since=${selectedDay.toISOString().split('T')[0]}&till=${nextDay.toISOString().split('T')[0]}`, { method: 'get' })
             .then(function (response) {
                 if (!response.ok) throw new Error(response.statusText)
                 return response.json();
@@ -99,7 +99,7 @@ function ResultItem(props) {
 function FlightNumber(props) {
     return (
         <div className="flight-number">
-            <img className="airline-logo" alt={props.flight.airline} src={`${process.env.PUBLIC_URL}/image/logo/${props.flight.airline}.png`} />
+            <img className="airline-logo" alt={props.flight.airline} src={`${process.env.PUBLIC_URL}/images/logo/${props.flight.airline}.png`} />
             <span>{props.flight.airline + props.flight.flightNumber}</span>
         </div>
     );
@@ -120,4 +120,6 @@ function Terminal(props) {
     );
 }
 
-export default SearchResult;
+const mapStateToProps = ({ nonstopOnly, availableOnly }) => ({nonstopOnly, availableOnly})
+
+export default connect(mapStateToProps)(SearchResult)

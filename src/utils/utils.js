@@ -1,5 +1,5 @@
-import mileageRequirement from './mileageRequirement.json'
-import airports from './airports.json';
+import mileageRequirement from '../mileageRequirement.json'
+import airports from '../airports.json';
 
 export const weekdayLabels = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
 

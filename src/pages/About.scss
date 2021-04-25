@@ -1,0 +1,26 @@
+.breadcrumb_area {
+  position: relative;
+  padding: 172px 0px 84px;
+  background: #04091e;
+  z-index: 1;
+  overflow: hidden;
+
+  .bg-parallax {
+      background: url("../images/about_banner.jpg") no-repeat scroll center 0 / cover;
+      opacity: 0.50;
+      z-index: -1;
+  }
+}
+
+.about_content {
+  padding-right: 60px;
+}
+
+.about_content p {
+  padding: 18px 0px 30px;
+}
+
+.center-vertical{
+  display: flex;
+  align-items: center;
+}
