@@ -40,7 +40,7 @@ export function AboutContent(props) {
                                 for award tickets and enjoy their trips.
 
                             </p>
-                            <Link to="/search" className="button_hover theme_btn stretch" onClick={() => {
+                            <Link to="/search" className="theme_btn stretch" onClick={() => {
                                 setTimeout(() => {
                                     window.scrollTo({
                                         top: 0,

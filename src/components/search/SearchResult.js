@@ -11,10 +11,6 @@ function SearchResult(props) {
     useEffect(() => {
         if (!(props.departure && props.arrival && props.date)) return;
         let selectedDay = new Date(props.date);
-        if (selectedDay < new Date()) {
-            setItineraries([]);
-            return;
-        }
         let nextDay = new Date(selectedDay.getTime() + 24 * 60 * 60 * 1000);
         setItineraries(undefined);
         fetch(`${environment.baseUrl}/itineraries?departure=${props.departure}&arrival=${props.arrival}&since=${selectedDay.toISOString().split('T')[0]}&till=${nextDay.toISOString().split('T')[0]}`, { method: 'get' })

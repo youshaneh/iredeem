@@ -1,51 +1,65 @@
-.book_tabel_item  .nice-select.invalid{
+.book_tabel_item .nice-select.invalid {
   border-color: #880000
 }
 
-.item{
+.item {
   margin-bottom: 10px;
 }
 
-.spinner{
+.spinner {
   position: absolute;
-  top:0;
-  bottom:0;
-  right:28px;
-  margin:auto;
+  top: 0;
+  bottom: 0;
+  right: 28px;
+  margin: auto;
 }
 
-.options{
+.options {
   z-index: 2;
   width: 100%;
   margin-top: 40px;
   margin-left: -15px;
   padding: 0 15px;
   position: absolute;
-  &.hide{
+
+  &.hide {
     display: none;
   }
-  .border{
+
+  .border {
     background: #ffffff;
     border: 1px solid #000;
-    .airport-option{
+    max-height: 236px;
+    overflow-y: scroll;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    .airport-option {
       padding: 5px 10px;
       border-bottom: 1px solid #eeeeee;
-      &:not(.invalid):hover{
+
+      &:not(.invalid):hover {
         background-color: #00000033;
       }
-      .airport{
+
+      .airport {
         color: #000;
         font-weight: 500;
       }
-      .details{
+
+      .details {
         font-size: 0.8em;
         color: #555;
       }
-      &.invalid{
-        .airport{
+
+      &.invalid {
+        .airport {
           color: #ccc;
         }
-        .details{
+
+        .details {
           color: #ddd;
         }
       }
