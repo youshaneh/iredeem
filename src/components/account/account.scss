@@ -1,0 +1,47 @@
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 180px;
+}
+
+.oauth-placeholder {
+  clear: both;
+  padding-top: 12px;
+}
+
+.route-container {
+  margin: 0 -8px;
+  padding-top: 34px;
+}
+
+.tracking-item {
+  overflow: hidden;
+}
+
+.route-transition-exit {
+  height: var(--target-height);
+  opacity: 1;
+}
+
+.route-transition-exit-active {
+  height: 0;
+  opacity: 0;
+  margin-bottom: 0;
+  transition: 500ms;
+}
+
+.my-flight-info {
+  color: #333;
+  padding: 0 12px;
+  font-size: 17px;
+  line-height: 36px;
+  display: flex;
+  justify-content: space-between;
+
+  .date {}
+
+  .cabin {
+    font-weight: 400;
+  }
+}

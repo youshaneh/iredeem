@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <script>
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const token = urlParams.get('token')
+    window.opener.postMessage({token}, location.origin);
+    window.close();
+  </script>
+</head>
+
+<body></body>
+
+</html>

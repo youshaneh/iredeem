@@ -62,6 +62,16 @@ function SearchPanel(props) {
       : allOptions[optionIndex];
   }
 
+  function checkSetDeparture(departure, clearArrival) {
+    setDeparture(departure);
+    clearArrival && setArrival('')
+  }
+
+  function checkSetArrival(arrival, clearDeparture) {
+    setArrival(arrival);
+    clearDeparture && setDeparture('')
+  }
+
   return (
     <SearchPannelFrame onKeyUp={e => {
       if (e.key !== 'Enter') return;
@@ -73,10 +83,10 @@ function SearchPanel(props) {
       }
     }}>
       <AutoCompleteInput ref={refs[0]} value={departure} routes={routes} warn={showWarning && !isDepartureValid}
-        updateFunction={setDeparture} validOptions={departureOptions} allOptions={allOptions[0]}
+        updateFunction={checkSetDeparture} validOptions={departureOptions} allOptions={allOptions[0]}
         placeholder="Where from?" invalidMsg=" - Not applicable" />
       <AutoCompleteInput ref={refs[1]} value={arrival} routes={routes} warn={showWarning && !isArrivalValid}
-        updateFunction={setArrival} validOptions={arrivalOptions} allOptions={allOptions[1]}
+        updateFunction={checkSetArrival} validOptions={arrivalOptions} allOptions={allOptions[1]}
         placeholder="Where to?" invalidMsg=" - Not applicable" />
       <div className="col-md item">
         <select className="wide nice-select" value={cabin} id="cabin"
@@ -139,7 +149,10 @@ const AutoCompleteInput = React.forwardRef((props, ref) => {
               <div className="details">{airports[option].city}</div>
             </div>)}
           {invalidOptions.map(option =>
-            <div className="airport-option invalid" key={option}>
+            <div className="airport-option invalid" key={option}
+              onMouseDown={() => {
+                props.updateFunction(option, true);
+              }}>
               <div className="airport">{option + props.invalidMsg}</div>
               <div className="details">{airports[option].city}</div>
             </div>)}

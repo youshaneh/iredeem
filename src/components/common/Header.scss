@@ -1,4 +1,4 @@
-.logo{
+.logo {
   padding: 3px;
   height: 40px;
 }
@@ -24,11 +24,12 @@
   padding: 0px;
 }
 
-.navbar .menu_nav .nav-item:hover .nav-link, .navbar .menu_nav .nav-item .active.nav-link {
+.navbar .menu_nav .nav-item:hover .nav-link,
+.navbar .menu_nav .nav-item .active.nav-link {
   color: #52c5fd;
 }
 
-.navbar .menu_nav .nav-item + li {
+.navbar .menu_nav .nav-item+li {
   margin-left: 30px;
 }
 
@@ -38,6 +39,121 @@
 }
 
 .navbar.navbar-expand-lg {
+  --navbar-padding: 25px;
   background: #fff;
-  padding: 0 25px;
+  padding: 0 var(--navbar-padding);
+}
+
+.modal-body {
+  padding: 30px 25px;
+}
+
+.modal-title {
+  color: #222222;
+  font-size: 32px;
+  line-height: 45px;
+  font-weight: 600;
+  margin: 0 0 26px 0;
+}
+
+.nice-select.sign-in-input {
+  background: transparent;
+  margin: 0 0 13px 0;
+  border-radius: 0px;
+  font-size: 13px;
+  line-height: 38px;
+  padding: 0px 0px 0px 20px;
+  color: #777777;
+  z-index: 0;
+}
+
+.sign-in-btn {
+  margin-top: 24px;
+
+  &.google-btn {
+    background: #fff;
+    background-color: #fff;
+    border: 1px solid #ccc;
+
+    &:before {
+      background: #4285f422;
+    }
+  }
+}
+
+.error-msg {
+  margin: -5px 5px 10px 5px;
+  color: #ed4337;
+
+  svg:first-of-type {
+    margin-bottom: 1px;
+  }
+
+  &.hide {
+    visibility: hidden;
+  }
+}
+
+.sign-up {
+  text-align: end;
+  padding-right: 5px;
+}
+
+.dropdown-menu {
+  border-radius: 0;
+  background-clip: unset;
+  left: unset;
+  border: none;
+  right: calc(-1 * var(--navbar-padding));
+
+  .dropdown-item {
+    line-height: 24px;
+    font-size: 14px;
+    color: #333;
+  }
+}
+
+.navbar .menu_nav .nav-item .nav-link.sub-item {
+  font: 500 12px/30px "Poppins", sans-serif;
+  color: #222222;
+  text-transform: uppercase;
+  padding: 0.25rem 1.5rem;
+
+  &.active-item {
+    color: #52c5fd;
+  }
+}
+
+.dropdown-item.active {
+  color: unset;
+}
+
+.dropdown-item:active {
+  color: unset;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.log-out {
+  cursor: pointer;
+}
+
+.dropdown.nav-item {
+  .dropdown-menu {
+    display: none;
+  }
+
+  &:hover {
+    .dropdown-menu {
+      display: block;
+    }
+  }
+  @media(max-width: 991px) {
+    .dropdown-menu {
+      display: block;
+    }
+
+    .dropdown-menu.show {
+      padding: 0;
+    }
+  }
 }

@@ -1,0 +1,40 @@
+.toast-container {
+  --toast-margin: 8px;
+  z-index: 1051;
+  position: fixed;
+  right: var(--toast-margin);
+  bottom: var(--toast-margin);
+
+  .toast-transition-enter {
+    height: 0;
+  }
+  .toast-transition-enter-active {
+    height: var(--target-height);
+    transition: height 500ms;
+  }
+  .toast-transition-exit {
+    height: var(--target-height);
+    margin-top: 0;
+    margin-bottom: 0;
+    opacity: 1;
+  }
+  .toast-transition-exit-active {
+    height: 0;
+    margin-top: calc(-1 * var(--toast-margin));
+    opacity: 0;
+    transition: 500ms;
+  }
+
+  
+  .toast {
+    background-color: #fffffff8;
+    min-width: 350px;
+    margin-top: var(--toast-margin);
+
+    @media(max-width: 575px) {
+      min-width: unset;
+      max-width: unset;
+      width: calc(100vw - calc(var(--toast-margin) * 2));
+    }
+  }
+}

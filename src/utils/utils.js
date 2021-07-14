@@ -46,6 +46,16 @@ function getDistance(lat1, lon1, lat2, lon2) {
   return 2 * 3958.8 * Math.asin(Math.sqrt(a));
 }
 
+export function getCabinNameFromCode(code){
+  switch(code){
+    case 'F': return 'First';
+    case 'B': return 'Business';
+    case 'N': return 'Premium Economy';
+    case 'R': return 'Economy';
+    default: return code;
+  }
+}
+
 export function onLinkSelect() {
   setTimeout(() => {
     window.scrollTo({
@@ -55,3 +65,13 @@ export function onLinkSelect() {
     });
   }, 0)
 }
+
+export function getJwtPayload(token) {
+  var base64Url = token.split('.')[1];
+  var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+  window.base64 = base64;
+  var payload = decodeURIComponent(atob(base64).split('').map(function (c) {
+    return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+  }).join(''));
+  return JSON.parse(payload);
+};

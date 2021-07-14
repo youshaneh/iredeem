@@ -103,7 +103,7 @@ button:focus {
     transform: translateX(-100%);
     z-index: -1;
     background: #f8b100;
-    transition: all 0.3s linear;
+    transition: all 0.2s linear;
     opacity: 0;
   }
 
@@ -517,21 +517,6 @@ button:focus {
     position: relative;
   }
 
-  .navbar .menu_nav .nav-item.dropdown:after {
-    display: inline-block;
-    content: "\e874";
-    font-family: 'Linearicons-Free';
-    font-size: 13px;
-    color: #777777;
-    top: 0px;
-    height: 100%;
-    line-height: 36px;
-    border: 0px;
-    position: absolute;
-    right: 0px;
-    z-index: -1;
-  }
-
   .navbar .menu_nav .nav-item.dropdown.show:after,
   .navbar .menu_nav .nav-item.dropdown:focus:after {
     color: #52c5fd;
@@ -540,10 +525,6 @@ button:focus {
 
   .navbar .menu_nav .nav-item+li {
     margin-left: 0px;
-  }
-
-  .navbar-collapse {
-    max-height: 288px;
   }
 
   .hotel_booking_table {

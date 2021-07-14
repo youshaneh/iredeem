@@ -37,5 +37,4 @@ function SearchOptions(props) {
 }
 
 const mapStateToProps = ({ nonstopOnly, availableOnly }) => ({ nonstopOnly, availableOnly });
-
 export default connect(mapStateToProps, { setNonstopOnly, setAvailableOnly })(SearchOptions);
