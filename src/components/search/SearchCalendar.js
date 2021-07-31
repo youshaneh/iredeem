@@ -24,7 +24,7 @@ function SearchCalendar(props) {
   useEffect(() => {
     function update(month) {
       if (availabilities[month]) return;
-      let firstDay = (new Date(month) < new Date()) ? new Date() : new Date(month);
+      let firstDay = new Date(`${month}-01T00:00:00`);
       let firstDayNextMonth = new Date(firstDay.getFullYear(), firstDay.getMonth() + 1, 1);
       fetch(`${environment.baseUrl}/availability?departure=${departure}&arrival=${arrival}&since=${getLocalDateString(firstDay)}&till=${getLocalDateString(firstDayNextMonth)}&includeWaitingList=false`, { method: 'get' })
         .then(function (response) {
@@ -72,7 +72,7 @@ function SearchCalendar(props) {
 
 function CalendarMonth(props) {
   let dates = [];
-  let firstDay = new Date(props.month);
+  let firstDay = new Date(`${props.month}-01T00:00:00`);
   let firstDayNextMonth = new Date(firstDay.getFullYear(), firstDay.getMonth() + 1, 1);
   for (let i = 0; i < firstDay.getDay(); i++) dates.push(null);
   for (let date = new Date(firstDay.getTime()); date.getMonth() === firstDay.getMonth(); date.setDate(date.getDate() + 1)) {

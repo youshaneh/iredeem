@@ -13,7 +13,7 @@ function ToastContainer({ toasts, clearNotification }) {
         {toasts.map(toast => (
           <CSSTransition key={toast.id} timeout={1000} classNames="toast-transition">
             <WithHeightValueDiv>
-              <Toast show={true} onClose={() => { clearNotification(toast.id) }} delay={10000} autohide>
+              <Toast show={true} onClose={() => { clearNotification(toast.id) }} delay={3500} autohide>
                 <Toast.Header>
                   <strong className="mr-auto">{toast.header}</strong>
                 </Toast.Header>

@@ -4,7 +4,7 @@ import airports from '../airports.json';
 export const weekdayLabels = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
 
 export function getOffsetMonthString(monthString, offest) {
-  let date = new Date(monthString);
+  let date = new Date(`${monthString}-01T00:00:00`);
   date.setMonth(date.getMonth() + offest);
   return getLocalDateString(date).substring(0, 7);
 }

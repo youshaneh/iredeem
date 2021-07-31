@@ -129,7 +129,7 @@ function LoginModal({ show, handleClose, setToken, setUserInfo, handleSignUp }) 
     const width = 600;
     var left = (window.screen.width / 2) - (width / 2);
     var top = (window.screen.height / 2) - (height / 2);
-    window.open("https://accounts.google.com/o/oauth2/v2/auth?scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile%20https://www.googleapis.com/auth/userinfo.email&access_type=offline&include_granted_scopes=true&response_type=code&state=test_state&redirect_uri=http%3A%2F%2Flocalhost%3A8081%2Fauth%2Fgoogle&client_id=798521678690-4v6k7ijqv546lootrn0br88um2mrb61h.apps.googleusercontent.com&flowName=GeneralOAuthFlow",
+    window.open("https://accounts.google.com/o/oauth2/auth/oauthchooseaccount?scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email&access_type=offline&include_granted_scopes=true&response_type=code&state=test_state&redirect_uri=https%3A%2F%2Firedeem.tk%2Fauth%2Fauth%2Fgoogle&client_id=798521678690-6kppnermd79tiaau4t26i580vrelr4n6.apps.googleusercontent.com&flowName=GeneralOAuthFlow",
       "googleOAuth", `height=${height}, width=${width}, top=${top}, left=${left}`);
   }
 
